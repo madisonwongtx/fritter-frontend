@@ -11,8 +11,10 @@ const store = new Vuex.Store({
   state: {
     filter: null, // Username to filter shown freets by (null = show all)
     freets: [], // All freets created in the app
+    feed: [], // Feed for the logged in user
     username: null, // Username of the logged in user
-    alerts: {} // global success/error messages encountered during submissions to non-visible forms
+    memories: [], //Memories for the logged in user
+    alerts: {}, // global success/error messages encountered during submissions to non-visible forms
   },
   mutations: {
     alert(state, payload) {
@@ -52,7 +54,22 @@ const store = new Vuex.Store({
       const url = state.filter ? `/api/users/${state.filter}/freets` : '/api/freets';
       const res = await fetch(url).then(async r => r.json());
       state.freets = res;
+    },
+    updateFeed(state, feed) {
+      /**
+       * Update the stored freets to the provided freets.
+       * @param feed - Freets/interactions to store
+       */
+      state.feed = feed;
+    },
+    updateMems(state, memories) {
+      /**
+       * Update the stored freets to the provided freets.
+       * @param memories - Freets/interactions to store
+       */
+      state.memories = memories;
     }
+    
   },
   // Store data across page refreshes, only discard on browser close
   plugins: [createPersistedState()]

@@ -1,6 +1,7 @@
 import type {Request, Response, NextFunction} from 'express';
 import {Types} from 'mongoose';
 import FreetCollection from '../freet/collection';
+import AssessmentCollection from '../assessment/collection';
 
 /**
  * Checks if a freet with freetId is req.params exists
@@ -11,6 +12,24 @@ const isFreetExists = async (req: Request, res: Response, next: NextFunction) =>
   if (!freet) {
     res.status(404).json({
       error: `Freet with freet ID ${req.params.freetId} does not exist.`
+    });
+    return;
+  }
+
+  next();
+};
+
+/**
+ * Checks if a freet with freetId is req.params exists
+ */
+const isFreetExistsBody = async (req: Request, res: Response, next: NextFunction) => {
+  const validFormat = Types.ObjectId.isValid(req.body.freetId);
+  const freet = validFormat ? await FreetCollection.findOne(req.body.freetId) : '';
+  if (!freet) {
+    res.status(404).json({
+      error: {
+        freetNotFound: 'Freet does not exist.'
+      }
     });
     return;
   }
@@ -57,8 +76,26 @@ const isValidFreetModifier = async (req: Request, res: Response, next: NextFunct
   next();
 };
 
+/**
+ * Checks if posting is allowed based on the current session user's last score
+ */
+const isPostingAllowed = async (req: Request, res: Response, next: NextFunction) => {
+  const userId = (req.session.userId as string) ?? '';
+  const assess_object = await AssessmentCollection.findOne(userId);
+  if (assess_object.retake) {
+    res.status(404).json({
+      error: 'You must take and pass the Good Framaritan Assessment to gain the ability to Freet. Please take the assessment'
+    });
+    return;
+  }
+
+  next();
+};
+
 export {
   isValidFreetContent,
   isFreetExists,
-  isValidFreetModifier
+  isValidFreetModifier,
+  isFreetExistsBody,
+  isPostingAllowed
 };

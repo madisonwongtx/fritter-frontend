@@ -4,6 +4,10 @@ import FreetCollection from '../freet/collection';
 import UserCollection from './collection';
 import * as userValidator from '../user/middleware';
 import * as util from './util';
+import AssessmentCollection from '../assessment/collection';
+import InteractionCollection from '../interactions/collection';
+import FollowCollection from '../follow/collection';
+import FilterCollection from '../filter/collection';
 
 const router = express.Router();
 
@@ -162,9 +166,36 @@ router.delete(
     const userId = (req.session.userId as string) ?? ''; // Will not be an empty string since its validated in isUserLoggedIn
     await UserCollection.deleteOne(userId);
     await FreetCollection.deleteMany(userId);
+    await AssessmentCollection.deleteAssessment(userId);
+    await InteractionCollection.deleteMany(userId);
+    await FilterCollection.deleteOne(userId);
+    await FollowCollection.deleteMany(userId);
     req.session.userId = undefined;
     res.status(200).json({
       message: 'Your account has been deleted successfully.'
+    });
+  }
+);
+
+/**
+ * Get the memories for the current session user
+ *
+ * @name GET /api/users/memories
+ *
+ * @return {Array<Freet | Interaction>} - The resulting memories
+ * @throws {403} - if the user is not logged in
+ */
+router.get(
+  '/memories',
+  [
+    userValidator.isUserLoggedIn
+  ],
+  async (req: Request, res: Response) => {
+    const userId = (req.session.userId as string) ?? '';
+    const mems = await UserCollection.findMemories(userId);
+    res.status(200).json({
+      messsage: 'Here are your memories',
+      output: await Promise.all(mems.map(util.constructMemoriesResponse))
     });
   }
 );

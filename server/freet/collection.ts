@@ -96,6 +96,33 @@ class FreetCollection {
   static async deleteMany(authorId: Types.ObjectId | string): Promise<void> {
     await FreetModel.deleteMany({authorId});
   }
+
+  /**
+   * Get posts by the current session user on a particular date
+   *
+   * @param {number} month - The target month
+   * @param {number} day - The target day
+   * @param {year} year - The current year
+   * @param {string} userId - the id of the current session user
+   * @return {Promise<HydratedDocument<Freet>[]>} - a list of posts made by the user on that date
+   */
+  static async freetsByDate(year: number, month: number, day: number, userId: string | Types.ObjectId): Promise<Array<HydratedDocument<Freet>>> {
+    const session_user = await UserCollection.findOneByUserId(userId);
+    const allFreets = await this.findAllByUsername(session_user.username);
+    const freets: Array<HydratedDocument<Freet>> = [];
+    for (const freet of allFreets) {
+      const {dateCreated} = freet;
+      const freetMonth = dateCreated.getMonth();
+      const freetDay = dateCreated.getDate();
+      const freetYear = dateCreated.getFullYear();
+
+      if (freetDay === day && freetMonth === month && freetYear !== year) {
+        freets.push(freet);
+      }
+    }
+
+    return freets;
+  }
 }
 
 export default FreetCollection;

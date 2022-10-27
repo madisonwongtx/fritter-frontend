@@ -1,12 +1,22 @@
 import type {HydratedDocument} from 'mongoose';
 import moment from 'moment';
 import type {User} from './model';
+import type {Interaction} from '../interactions/model';
+import type {Freet, PopulatedFreet} from '../freet/model';
+import UserCollection from '../user/collection';
 
 // Update this if you add a property to the User type!
 type UserResponse = {
   _id: string;
   username: string;
   dateJoined: string;
+};
+
+type MemoryResponse = {
+  author: string;
+  content: string;
+  interaction: string;
+  date: string;
 };
 
 /**
@@ -39,6 +49,30 @@ const constructUserResponse = (user: HydratedDocument<User>): UserResponse => {
   };
 };
 
+/**
+ * Transform the feed into readable string as well as removing the password for the user
+ */
+const constructMemoriesResponse = async (item: HydratedDocument<Interaction | Freet >): Promise<MemoryResponse> => {
+  if ((typeof item === 'object') && ('freet' in item)) { // Type is interaction
+    const user = await UserCollection.findOneByUserId(item.freet.authorId);
+    return {
+      author: user.username,
+      content: item.freet.content,
+      interaction: item.interaction,
+      date: formatDate(item.dateCreated)
+    };
+  }
+
+  const user = await UserCollection.findOneByUserId(item.authorId);
+  return {
+    author: user.username,
+    content: item.content,
+    interaction: '',
+    date: formatDate(item.dateModified)
+  };
+};
+
 export {
-  constructUserResponse
+  constructUserResponse,
+  constructMemoriesResponse
 };

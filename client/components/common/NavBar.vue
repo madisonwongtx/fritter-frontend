@@ -16,9 +16,9 @@
       </router-link>
       <router-link
         v-if="$store.state.username"
-        to="/account"
+        to="/profile"
       >
-        Account
+        Profile
       </router-link>
       <router-link
         v-else

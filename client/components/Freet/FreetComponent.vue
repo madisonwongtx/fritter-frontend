@@ -52,6 +52,12 @@
       Posted at {{ freet.dateModified }}
       <i v-if="freet.edited">(edited)</i>
     </p>
+    <div v-if="$store.state.username !== null">
+      <InteractionBar
+        v-if="!editing"
+        :freet="freet" 
+      />
+    </div>
     <section class="alerts">
       <article
         v-for="(status, alert, index) in alerts"
@@ -65,8 +71,12 @@
 </template>
 
 <script>
+
+import InteractionBar from '@/components/Interactions/InteractionBar.vue';
+
 export default {
   name: 'FreetComponent',
+  components: {InteractionBar},
   props: {
     // Data from the stored freet
     freet: {
