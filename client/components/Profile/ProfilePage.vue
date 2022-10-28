@@ -8,14 +8,75 @@
         <h2>Profile for @{{ $store.state.username }}</h2>
       </header>
     </section>
+
     <div>
-      <button>
-        Followers
+      <button
+        @click="displayFollower"
+      >
+        Followers <br /> {{ followers.length }}
       </button>
-      <button>
-        Following
+      <button
+        @click="displayFollowing"
+      >
+        Following <br /> {{ following.length }}
       </button>
     </div>
+    <div
+      v-if="showFollower"
+    >
+      <div
+        v-if="followers.length"
+      >
+        <UserComponent
+          v-for="relationship in followers"
+          :key="relationship._id"
+          :relationship="relationship"
+          :user="relationship.follower"
+        />
+      </div>
+      <div
+        v-else
+      >
+        You are have no followers 
+      </div>
+    </div>
+    <div
+      v-if="showFollowing"
+    >
+      <div
+        v-if="following.length"
+      >
+        <UserComponent
+          v-for="relationship in following"
+          :key="relationship._id"
+          :relationship="relationship"
+          :user="relationship.toFollow"
+        />
+      </div>
+      <div
+        v-else
+      >
+        You are not following any users 
+      </div>
+    </div>
+
+    <section>
+      <h2>Your Contributions</h2>
+      <section
+        v-if="contributions.length"
+      >
+        <FreetComponent
+          v-for="freet in contributions"
+          :key="freet.id"
+          :freet="freet"
+        />
+      </section>
+      <section
+        v-else
+      >
+        <h3>No posts yet!</h3>
+      </section>
+    </section>
     <section>
       <MemoriesPage />
     </section>
@@ -33,14 +94,95 @@
 <script>
 
 import MemoriesPage from '@/components/Memories/MemoriesPage.vue';
+import FreetComponent from '@/components/Freet/FreetComponent.vue';
+import UserComponent from '@/components/Follow/UserComponent.vue';
 
 export default {
   name: 'ProfilePage',
   components: {
-    MemoriesPage
+    MemoriesPage,
+    FreetComponent,
+    UserComponent
   },
-  mounted() {
-    MemoriesPage
+  data() {
+    return {
+      contributions: [],
+      followers: [],
+      following: [],
+      showFollower: false,
+      showFollowing: false
+    };
+  },
+  created() {
+    MemoriesPage;
+    this.getContributions();
+    this.getFollowers();
+    this.getFollowing();
+  },
+  methods: {
+    displayFollower() {
+      if (this.showFollowing) {
+        this.showFollowing = false;
+      }
+      this.showFollower = true;
+      // console.log(this.followers);
+    },
+    displayFollowing() {
+      if (this.showFollower) {
+        this.showFollower = false;
+      }
+      this.showFollowing = true;
+    },
+    async getContributions(){
+      const url = `/api/freets?author=${this.$store.state.username}`;
+      try {
+        const r = await fetch(url);
+        const res = await r.json();
+        if(!r.ok) {
+          throw new Error (res.error);
+        }
+        this.contributions = res;
+        // console.log(this.contributions);
+      } catch (e) {
+        this.$set(this.alerts, e, 'error');
+          setTimeout(() => this.$delete(this.alerts, e), 3000);
+      }
+    },
+    async getFollowing() {
+      const url = '/api/follow';
+      try {
+        const r = await fetch(url);
+        const res = await r.json();
+        if(!r.ok) {
+          throw new Error (res.error);
+        }
+        this.following = res.follower;
+        const usernames = [];
+        for (const follower of this.following) {
+          usernames.push(follower.toFollow.username);
+        }
+        this.$store.commit('updateFollowing', usernames);
+
+      } catch (e) {
+        this.$set(this.alerts, e, 'error');
+          setTimeout(() => this.$delete(this.alerts, e), 3000);
+      }
+    },
+    async getFollowers() {
+      const url = '/api/follow/followers';
+      try {
+        const r = await fetch(url);
+        const res = await r.json();
+        if(!r.ok) {
+          throw new Error (res.error);
+        }
+        this.followers = res.follower;
+        // console.log(res.follower);
+      } catch (e) {
+        this.$set(this.alerts, e, 'error');
+          setTimeout(() => this.$delete(this.alerts, e), 3000);
+      }
+    }
   }
 };
 </script>

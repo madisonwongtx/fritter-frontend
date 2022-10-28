@@ -12,19 +12,25 @@
     </div>
     <div class="right">
       <router-link to="/">
-        Home
+        Home🏠
       </router-link>
       <router-link
         v-if="$store.state.username"
         to="/profile"
       >
-        Profile
+        Profile👤
       </router-link>
       <router-link
         v-else
         to="/login"
       >
         Login
+      </router-link>
+      <router-link
+        v-if="$store.state.username"
+        to="/follow"
+      >
+        Find Others🔍
       </router-link>
     </div>
     <section class="alerts">

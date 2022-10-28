@@ -28,7 +28,7 @@ router.get(
     const response = following.map(util.constructFollowResponse);
     res.status(200).json({
       message: 'Here are the users you follow',
-      follower: response
+      follower: following
     });
   }
 );
@@ -53,7 +53,7 @@ router.get(
     const response = followers.map(util.constructFollowResponse);
     res.status(200).json({
       message: 'Here are your followers',
-      follower: response
+      follower: followers
     });
   }
 );

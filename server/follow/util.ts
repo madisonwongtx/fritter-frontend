@@ -6,8 +6,8 @@ import type {Interaction} from '../interactions/model';
 import UserCollection from '../user/collection';
 
 type FollowResponse = {
-  toFollow: string;
-  follower: string;
+  toFollowUser: string;
+  followerUser: string;
 };
 
 type FeedResponse = {
@@ -31,8 +31,8 @@ const constructFollowResponse = (follow: HydratedDocument<Follow>): FollowRespon
     })
   };
   return {
-    toFollow: followCopy.toFollow.username,
-    follower: followCopy.follower.username
+    toFollowUser: follow.toFollow.username,
+    followerUser: follow.follower.username
   };
 };
 

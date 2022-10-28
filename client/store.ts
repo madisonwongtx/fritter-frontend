@@ -14,6 +14,7 @@ const store = new Vuex.Store({
     feed: [], // Feed for the logged in user
     username: null, // Username of the logged in user
     memories: [], //Memories for the logged in user
+    following: [], //usernames of the users the current session user is following
     alerts: {}, // global success/error messages encountered during submissions to non-visible forms
   },
   mutations: {
@@ -68,6 +69,13 @@ const store = new Vuex.Store({
        * @param memories - Freets/interactions to store
        */
       state.memories = memories;
+    },
+    updateFollowing(state, usernames) {
+      /**
+       * Updates the stored following to the provided following
+       * @param usernames - users that the current session user follows
+       */
+      state.following = usernames;
     }
     
   },

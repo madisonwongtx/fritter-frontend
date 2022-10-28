@@ -90,6 +90,25 @@ class UserCollection {
   }
 
   /**
+   * Gets all possible users not including the current session user
+   *
+   * @param {string} userId - the userId of the current session user
+   * @return {Promise<Array<HydratedDocument<User>>>} - the list of users
+   */
+  static async getAllOthers(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<User>>> {
+    const users = await UserModel.find();
+    const curr_user = await UserModel.findOne({_id: userId});
+    const results: Array<HydratedDocument<User>> = [];
+    for (const user of users) {
+      if (user !== curr_user) {
+        results.push(user);
+      }
+    }
+
+    return results;
+  }
+
+  /**
    * Delete a user from the collection.
    *
    * @param {string} userId - The userId of user to delete
