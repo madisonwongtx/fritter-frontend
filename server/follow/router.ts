@@ -91,7 +91,7 @@ router.post(
 
     res.status(201).json({
       message: `You are now following ${req.body.user as string}`,
-      follow: util.constructFollowResponse(newFollow)
+      follow: newFollow
     });
   }
 );

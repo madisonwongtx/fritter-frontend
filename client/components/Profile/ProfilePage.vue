@@ -13,24 +13,23 @@
       <button
         @click="displayFollower"
       >
-        Followers <br /> {{ followers.length }}
+        Followers <br /> {{ $store.state.followers.length }}
       </button>
       <button
         @click="displayFollowing"
       >
-        Following <br /> {{ following.length }}
+        Following <br /> {{ $store.state.following.length }}
       </button>
     </div>
     <div
       v-if="showFollower"
     >
       <div
-        v-if="followers.length"
+        v-if="$store.state.followers.length"
       >
         <UserComponent
-          v-for="relationship in followers"
+          v-for="relationship in $store.state.followers"
           :key="relationship._id"
-          :relationship="relationship"
           :user="relationship.follower"
         />
       </div>
@@ -44,10 +43,10 @@
       v-if="showFollowing"
     >
       <div
-        v-if="following.length"
+        v-if="$store.state.following.length"
       >
         <UserComponent
-          v-for="relationship in following"
+          v-for="relationship in $store.state.following"
           :key="relationship._id"
           :relationship="relationship"
           :user="relationship.toFollow"
@@ -107,8 +106,6 @@ export default {
   data() {
     return {
       contributions: [],
-      followers: [],
-      following: [],
       showFollower: false,
       showFollowing: false
     };
@@ -156,13 +153,7 @@ export default {
         if(!r.ok) {
           throw new Error (res.error);
         }
-        this.following = res.follower;
-        const usernames = [];
-        for (const follower of this.following) {
-          usernames.push(follower.toFollow.username);
-        }
-        this.$store.commit('updateFollowing', usernames);
-
+        this.$store.commit('updateFollowing', res.follower);
       } catch (e) {
         this.$set(this.alerts, e, 'error');
           setTimeout(() => this.$delete(this.alerts, e), 3000);
@@ -176,8 +167,7 @@ export default {
         if(!r.ok) {
           throw new Error (res.error);
         }
-        this.followers = res.follower;
-        // console.log(res.follower);
+        this.$store.commit('updateFollowers', res.follower);
       } catch (e) {
         this.$set(this.alerts, e, 'error');
           setTimeout(() => this.$delete(this.alerts, e), 3000);
