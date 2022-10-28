@@ -27,7 +27,7 @@ router.get(
     const response = await Promise.all(interactions.map(util.constructInteractionResponse));
     res.status(200).json({
       message: 'Here are your interactions',
-      result: response
+      result: interactions
     });
   }
 );
@@ -58,7 +58,7 @@ router.post(
 
     res.status(201).json({
       message: 'You have added your interaction!',
-      output: await util.constructInteractionResponse(interaction)
+      output: interaction
     });
   }
 );
@@ -89,7 +89,7 @@ router.put(
 
     res.status(201).json({
       message: 'You have updated your interaction',
-      output: await util.constructInteractionResponse(interaction)
+      output: interaction
     });
   }
 );

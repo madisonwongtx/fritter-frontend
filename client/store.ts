@@ -17,6 +17,7 @@ const store = new Vuex.Store({
     following: [], //usernames of the users the current session user is following
     followers: [], //usernames of the users that follow the current session user
     suggested: [], //usernames that the user does not currently follow
+    interactions: [], //all interactions made by the current session user
     alerts: {}, // global success/error messages encountered during submissions to non-visible forms
   },
   mutations: {
@@ -102,6 +103,18 @@ const store = new Vuex.Store({
       const url = '/api/follow/suggested';
       const res = await fetch(url).then(async r => r.json());
       state.suggested = res.result;
+    },
+    updateInteractions(state, interactions) {
+      /**
+       * Updates the stored interactions to the provided interactions
+       * @param interactions - the interactions by the current session user
+       */
+      state.interactions = interactions;
+    },
+    async refreshInteractions(state) {
+      const url = '/api/interactions';
+      const res = await fetch(url).then(async r => r.json());
+      state.interactions = res.result;
     }
     
   },

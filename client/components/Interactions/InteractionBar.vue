@@ -2,188 +2,190 @@
 <template>
   <div>
     <button
-      v-if="!like"
-      @click="addInteraction('like')"
+      v-if="i_type !== 'heart'"
       style="background-color: aliceblue"
+      @click="addInteraction('heart')"
     >
       ❤️
     </button>
     <button
       v-else
-      @click="deleteInteraction"
       style="background-color:aquamarine"
+      @click="deleteInteraction"
     >
       ❤️
     </button>
-<!-- 
+
     <button
-      v-if="!thumbsup"
-      @click="addInteraction('thumbsup')"
+      v-if="i_type !== 'thumbs up'"
+      style="background-color: aliceblue"
+      @click="addInteraction('thumbs up')"
     >
       👍
     </button>
     <button
-      v-if="thumbsup"
+      v-else
+      style="background-color:aquamarine"
       @click="deleteInteraction"
     >
-      👍 Undo
+      👍
     </button>
 
     <button
-      v-if="!thumbsdown"
-      @click="addInteraction('thumbsdown')"
+      v-if="i_type !== 'thumbs down'"
+      style="background-color: aliceblue"
+      @click="addInteraction('thumbs down')"
     >
       👎 
     </button>
     <button
-      v-if="thumbsdown"
+      v-else
+      style="background-color:aquamarine"
       @click="deleteInteraction"
     >
-      👎 Undo
+      👎
     </button>
 
     <button
-      v-if="!happy"
+      v-if="i_type !== 'happy'"
+      style="background-color: aliceblue"
       @click="addInteraction('happy')"
     >
       😁
     </button>
     <button
-      v-if="happy"
+      v-else
+      style="background-color:aquamarine"
       @click="deleteInteraction"
     >
-      😁 Undo
+      😁
     </button>
 
     <button
-      v-if="!sad"
+      v-if="i_type !== 'sad'"
+      style="background-color: aliceblue"
       @click="addInteraction('sad')"
     >
       😢
     </button>
     <button
-      v-if="sad"
+      v-else
+      style="background-color:aquamarine"
       @click="deleteInteraction"
     >
-      😢 Undo
+      😢
     </button>
 
     <button
-      v-if="!angry"
+      v-if="i_type !== 'angry'"
+      style="background-color: aliceblue"
       @click="addInteraction('angry')"
     >
       😡
     </button>
     <button
-      v-if="angry"
+      v-else
+      style="background-color:aquamarine"
       @click="deleteInteraction"
     >
-      😡 Undo
+      😡
     </button>
 
     <button
-      v-if="!clapping"
+      v-if="i_type !== 'clapping'"
+      style="background-color: aliceblue"
       @click="addInteraction('clapping')"
     >
       👏
     </button>
     <button
-      v-if="clapping"
+      v-else
+      style="background-color:aquamarine"
       @click="deleteInteraction"
     >
-      👏 Undo
+      👏
     </button>
 
     <button
-      v-if="!laughing"
+      v-if="i_type !== 'laughing'"
+      style="background-color: aliceblue"
       @click="addInteraction('laughing')"
     >
       😂
     </button>
     <button
-      v-if="laughing"
+      v-else
+      style="background-color:aquamarine"
       @click="deleteInteraction"
     >
-      😂 Undo
+      😂
     </button>
 
     <button
-      v-if="!dead"
+      v-if="i_type !== 'dead'"
+      style="background-color: aliceblue"
       @click="addInteraction('dead')"
     >
       💀
     </button>
     <button
-      v-if="dead"
+      v-else
+      style="background-color:aquamarine"
       @click="deleteInteraction"
     >
-      💀 Undo
-    </button> -->
+      💀
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'InteractionBar',
-  data() {
-    return {
-      any: false, //Whether or not this freet has any interaction
-      like: false,
-      thumbsup: false,
-      thumbsdown: false,
-      happy: false,
-      sad: false,
-      angry: false,
-      clapping: false,
-      laughing: false,
-      dead: false
+  props: {
+    freet: {
+      type: Object,
+      required: true
     }
   },
+  data() {
+    return {
+      i_type: '',
+      any: false
+    }
+  },
+  mounted () {
+    this.checkInteraction();
+  },
   methods: {
+    checkInteraction() {
+      this.$store.commit('refreshInteractions');
+      this.any = false;
+      this.i_type = '';
+      for (const i of this.$store.state.interactions) {
+        if (i.freet._id === this.freet._id) {
+          this.i_type = i.interaction;
+          this.any = true;
+        }
+      }
+    },
     addInteraction(interaction_type) {
       if (this.any) {
         this.changeInteraction(interaction_type);
+        console.log('hello');
         return;
       } else {
         const params = {
           method: 'POST',
           body: JSON.stringify({interaction_type: interaction_type}),
           callback: () => {
+            this.i_type = interaction_type;
+            this.any = true;
             this.$store.commit('alert', {
               message: 'Successfully created interaction!', status: 'success'
             });
           }
-        };
+        }
         this.request(params);
-
-        this.any = true;
-        if(interaction_type === "like") {
-          this.like = true;
-        }
-        if(interaction_type === "thumbsup") {
-          this.thumbsup = true;
-        }
-        if(interaction_type === "thumbsdown") {
-          this.thumbsdown = true;
-        }
-        if(interaction_type === "happy") {
-          this.happy = true;
-        }
-        if(interaction_type === "sad") {
-          this.sad = true;
-        }
-        if(interaction_type === "angry") {
-          this.angry = true;
-        }
-        if(interaction_type === "clapping") {
-          this.clapping = true;
-        }
-        if(interaction_type === "laughing") {
-          this.laughing = true;
-        }
-        if(interaction_type === "dead") {
-          this.dead = true;
-        } 
       }
     },
     changeInteraction(interaction_type) {
@@ -191,107 +193,28 @@ export default {
         method: 'PUT',
           body: JSON.stringify({interaction_type: interaction_type}),
           callback: () => {
+            this.i_type = interaction_type;
+            this.any = true;
             this.$store.commit('alert', {
               message: 'Successfully changed interaction!', status: 'success'
             });
           }
       }
       this.request(params);
-      if(this.like) {
-        this.like = false;
-      }
-      if(this.thumbsup) {
-        this.thumbsup = false;
-      }
-      if(this.thumbsdown) {
-        this.thumbsdown = false;
-      }
-      if(this.happy) {
-        this.happy = false;
-      }
-      if(this.sad) {
-        this.sad = false;
-      }
-      if(this.angry) {
-        this.angry = false;
-      }
-      if(this.clapping) {
-        this.clapping = false;
-      }
-      if(this.laughing) {
-        this.laughing = false;
-      }
-      if(this.dead) {
-        this.dead = false;
-      }
-
-      if(interaction_type === "like") {
-        this.like = true;
-      }
-      if(interaction_type === "thumbsup") {
-        this.thumbsup = true;
-      }
-      if(interaction_type === "thumbsdown") {
-        this.thumbsdown = true;
-      }
-      if(interaction_type === "happy") {
-        this.happy = true;
-      }
-      if(interaction_type === "sad") {
-        this.sad = true;
-      }
-      if(interaction_type === "angry") {
-        this.angry = true;
-      }
-      if(interaction_type === "clapping") {
-        this.clapping = true;
-      }
-      if(interaction_type === "laughing") {
-        this.laughing = true;
-      }
-       if(interaction_type === "dead") {
-        this.dead = true;
-      } 
-
+     
     },
     deleteInteraction() {
       const params = {
         method: 'DELETE',
         callback: () => {
+          this.i_type = '';
+          this.any = false;
           this.$store.commit('alert', {
             message: 'Successfully deleted interaction!', status: 'success'
           });
         }
       };
       this.request(params)
-      this.any = false;
-      if(this.like) {
-        this.like = false;
-      }
-      if(this.thumbsup) {
-        this.thumbsup = false;
-      }
-      if(this.thumbsdown) {
-        this.thumbsdown = false;
-      }
-      if(this.happy) {
-        this.happy = false;
-      }
-      if(this.sad) {
-        this.sad = false;
-      }
-      if(this.angry) {
-        this.angry = false;
-      }
-      if(this.clapping) {
-        this.clapping = false;
-      }
-      if(this.laughing) {
-        this.laughing = false;
-      }
-      if(this.dead) {
-        this.dead = false;
-      }
     },
     async request(params) {
       /**
@@ -314,7 +237,8 @@ export default {
           const res = await r.json();
           throw new Error(res.error);
         }
-        this.$store.commit('refreshFreets');
+        this.$store.commit('refreshInteractions');
+        this.checkInteraction();
         params.callback();
       } catch (e) {
         this.$set(this.alerts, e, 'error');
