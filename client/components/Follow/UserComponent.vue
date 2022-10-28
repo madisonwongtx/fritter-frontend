@@ -99,6 +99,7 @@ export default {
           }
 
           this.$store.commit('refreshFollowing');
+          this.$store.commit('refreshSuggested');
     
           params.callback();
         } catch (e) {

@@ -100,7 +100,7 @@ class UserCollection {
     const curr_user = await UserModel.findOne({_id: userId});
     const results: Array<HydratedDocument<User>> = [];
     for (const user of users) {
-      if (user !== curr_user) {
+      if (user.username !== curr_user.username) {
         results.push(user);
       }
     }

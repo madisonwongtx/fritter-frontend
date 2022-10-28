@@ -6,6 +6,7 @@ import FilterCollection from '../filter/collection';
 import type {Interaction} from '../interactions/model';
 import type {Freet} from '../freet/model';
 import type {Follow} from './model';
+import type {User} from '../user/model';
 import FollowModel from './model';
 
 class FollowCollection {
@@ -117,6 +118,26 @@ class FollowCollection {
     const session_user = await UserCollection.findOneByUserId(userId);
     const deleted = FollowModel.deleteMany({toFollow: session_user});
     const deletedFollowing = FollowModel.deleteMany({follower: session_user});
+  }
+
+  /**
+   * Gets suggested users that the current session user could follow
+   *
+   * @param {string} userId - the id of the current session user
+   * @return {Promise<Array<HydratedDocument<User>>>} - the list of suggested users to follow
+   */
+  static async getSuggested(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<User>>> {
+    const session_user = await UserCollection.findOneByUserId(userId);
+    const all_poss = await UserCollection.getAllOthers(userId);
+    const exists = await Promise.all(all_poss.map(user => FollowModel.findOne({toFollow: user, follower: session_user})));
+    const suggested: Array<HydratedDocument<User>> = [];
+    for (let i = 0; i < exists.length; i++) {
+      if (exists[i] === null) {
+        suggested.push(all_poss[i]);
+      }
+    }
+
+    return suggested;
   }
 }
 

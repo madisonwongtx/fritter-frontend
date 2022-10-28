@@ -149,4 +149,27 @@ router.get(
   }
 );
 
+/**
+ * Get the available users that the user could follow
+ *
+ * @name GET /api/follow/suggested
+ *
+ * @return {Follow[]} - the suggested users to follow
+ * @throws {403} -if the user is not logges in
+ */
+router.get(
+  '/suggested',
+  [
+    userValidator.isUserLoggedIn
+  ],
+  async (req: Request, res: Response) => {
+    const userId = (req.session.userId as string) ?? '';
+    const suggested = await FollowCollection.getSuggested(userId);
+    res.status(200).json({
+      message: 'Here is your suggested',
+      result: suggested
+    });
+  }
+);
+
 export {router as followRouter};

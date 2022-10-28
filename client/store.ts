@@ -15,7 +15,8 @@ const store = new Vuex.Store({
     username: null, // Username of the logged in user
     memories: [], //Memories for the logged in user
     following: [], //usernames of the users the current session user is following
-    followers: [],
+    followers: [], //usernames of the users that follow the current session user
+    suggested: [], //usernames that the user does not currently follow
     alerts: {}, // global success/error messages encountered during submissions to non-visible forms
   },
   mutations: {
@@ -58,7 +59,7 @@ const store = new Vuex.Store({
       state.freets = res;
     },
     async refreshFollowing(state) {
-      const url = 'api/follow';
+      const url = '/api/follow';
       const res = await fetch(url).then(async r => r.json());
       state.following = res.follower;
     },
@@ -89,6 +90,18 @@ const store = new Vuex.Store({
        * @param usernames - users that the current session user follows
        */
       state.followers = relationships;
+    },
+    updateSuggested(state, usernames) {
+      /**
+       * Updates the stored suggested to the provided users
+       * @param usernames - the users that are not followed by the current session user
+       */
+      state.suggested = usernames;
+    },
+    async refreshSuggested(state) {
+      const url = '/api/follow/suggested';
+      const res = await fetch(url).then(async r => r.json());
+      state.suggested = res.result;
     }
     
   },

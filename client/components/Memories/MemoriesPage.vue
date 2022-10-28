@@ -60,7 +60,6 @@ export default {
           }
 
           this.$store.commit('updateMems', res.output);
-          // console.log(res.output);
         } catch (e) {
           this.$set(this.alerts, e, 'error');
           setTimeout(() => this.$delete(this.alerts, e), 3000);
