@@ -82,6 +82,12 @@
     <section>
       <router-link
         v-if="$store.state.username"
+        to="/assessment"
+      >
+        Good Framaritan Assessment
+      </router-link>
+      <router-link
+        v-if="$store.state.username"
         to="/account"
       >
         Settings
@@ -198,7 +204,16 @@ section .scrollbox {
   padding: 3%;
   overflow-y: scroll;
 }
+
+.newPage {
+  font-size: 20px;
+  display: grid;
+  gap: 16px;
+  grid-auto-flow: column;
+  align-items: center;
+}
 </style>
+
 
 <!-- want to be able to see all freets and interactions by user, have memories tab, have assessment tab
      view followers, view following, follow user -->

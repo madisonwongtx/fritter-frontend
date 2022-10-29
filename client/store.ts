@@ -19,6 +19,16 @@ const store = new Vuex.Store({
     followers: [], //usernames of the users that follow the current session user
     suggested: [], //usernames that the user does not currently follow
     interactions: [], //all interactions made by the current session user
+    quiz: null, //last quiz attempt
+    question1: 0,
+    question2: 0,
+    question3: 0,
+    question4: 0, //0 is unanswerd, 1 is acceptable, 2 is unacceptable
+    question5: 0,
+    question6: 0,
+    question7: 0,
+    question8: 0,
+    score: 0,
     alerts: {}, // global success/error messages encountered during submissions to non-visible forms
   },
   mutations: {
@@ -116,7 +126,39 @@ const store = new Vuex.Store({
       const res = await fetch(url).then(async r => r.json());
       // console.log(res.feed);
       state.feed = res.feed;
-    }    
+    },
+    updateQuiz(state, questions) {
+      state.quiz = questions;
+    },
+    updateQuestion2(state, answer) {
+      state.question2 = answer;
+    },  
+    updateQuestion3(state, answer) {
+      state.question3 = answer;
+    }, 
+    updateQuestion4(state, answer) {
+      state.question4 = answer;
+    }, 
+    updateQuestion5(state, answer) {
+      state.question5 = answer;
+    }, 
+    updateQuestion6(state, answer) {
+      state.question6 = answer;
+    }, 
+    updateQuestion7(state, answer) {
+      state.question7 = answer;
+    }, 
+    updateQuestion8(state, answer) {
+      state.question8 = answer;
+    }, 
+    updateQuestion1(state, answer) {
+      state.question1 = answer;
+    },
+    async refreshScore(state) {
+      const url = '/api/assessment/score';
+      const res = await fetch(url).then(async r => r.json());
+      state.score = res.score;
+    }  
   },
   // Store data across page refreshes, only discard on browser close
   plugins: [createPersistedState()]

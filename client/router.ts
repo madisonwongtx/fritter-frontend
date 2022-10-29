@@ -8,6 +8,7 @@ import FollowPage from './components/Follow/FollowPage.vue';
 import MemoriesPage from './components/Memories/MemoriesPage.vue';
 import HomePage from './components/Home/HomePage.vue';
 import RegisterPage from './components/Login/RegisterPage.vue';
+import AssessmentPage from './components/Assessment/AssessmentPage.vue';
 import NotFound from './NotFound.vue';
 
 Vue.use(VueRouter);
@@ -20,6 +21,7 @@ const routes = [
   {path: '/follow', name: 'Follow', component: FollowPage},
   {path: '/memories', name: 'Memories', component: MemoriesPage},
   {path: '/register', name: 'Register', component: RegisterPage},
+  {path: '/assessment', name: 'Assessment', component: AssessmentPage},
   {path: '*', name: 'Not Found', component: NotFound}
 ];
 
@@ -51,6 +53,11 @@ router.beforeEach((to, from, next) => {
     }
 
     if (to.name === 'Follow' && !router.app.$store.state.username) {
+      next({name: 'Login'}); // Go to Login page if user navigates to Account and are not signed in
+      return;
+    }
+
+    if (to.name === 'Assessment' && !router.app.$store.state.username) {
       next({name: 'Login'}); // Go to Login page if user navigates to Account and are not signed in
       return;
     }
