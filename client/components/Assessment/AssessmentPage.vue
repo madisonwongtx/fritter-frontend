@@ -33,7 +33,7 @@
       <button
         @click="getAssessment"
       >
-        Take Good Framaritan Assessment
+        Get New Good Framaritan Assessment
       </button>
     </section>
     <section>
