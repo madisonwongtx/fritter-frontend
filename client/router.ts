@@ -6,17 +6,20 @@ import LoginPage from './components/Login/LoginPage.vue';
 import ProfilePage from './components/Profile/ProfilePage.vue';
 import FollowPage from './components/Follow/FollowPage.vue';
 import MemoriesPage from './components/Memories/MemoriesPage.vue';
+import HomePage from './components/Home/HomePage.vue';
+import RegisterPage from './components/Login/RegisterPage.vue';
 import NotFound from './NotFound.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
-  {path: '/', name: 'Home', component: FreetsPage},
+  {path: '/', name: 'Home', component: HomePage},
   {path: '/account', name: 'Account', component: AccountPage},
   {path: '/login', name: 'Login', component: LoginPage},
   {path: '/profile', name: 'Profile', component: ProfilePage},
   {path: '/follow', name: 'Follow', component: FollowPage},
   {path: '/memories', name: 'Memories', component: MemoriesPage},
+  {path: '/register', name: 'Register', component: RegisterPage},
   {path: '*', name: 'Not Found', component: NotFound}
 ];
 
@@ -28,7 +31,7 @@ const router = new VueRouter({routes});
 router.beforeEach((to, from, next) => {
   if (router.app.$store) {
     if (to.name === 'Login' && router.app.$store.state.username) {
-      next({name: 'Account'}); // Go to Account page if user navigates to Login and are signed in
+      next({name: 'Profile'}); // Go to Account page if user navigates to Login and are signed in
       return;
     }
 

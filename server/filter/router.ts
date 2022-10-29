@@ -22,14 +22,14 @@ router.get(
   async (req: Request, res: Response) => {
     const userId = (req.session.userId as string) ?? '';
     const filter = await FilterCollection.getStatus(userId);
-    let message = '';
+    let new_message = '';
     if (filter) {
-      message = 'Filter is on. You will only see the posts from people you follow';
+      new_message = 'Filter is on. You will only see the posts from people you follow';
     } else {
-      message = 'Filter is off. You will see the posts and interactions from people you follow';
+      new_message = 'Filter is off. You will see the posts and interactions from people you follow';
     }
 
-    res.status(200).json(message);
+    res.status(200).json({message: new_message, result: filter});
   }
 );
 

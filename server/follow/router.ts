@@ -144,7 +144,7 @@ router.get(
     const feed_ = await FollowCollection.getFeed(userId);
     res.status(200).json({
       message: 'Here is your feed',
-      feed: await Promise.all(feed_.map(util.constructFeedResponse))
+      feed: feed_
     });
   }
 );

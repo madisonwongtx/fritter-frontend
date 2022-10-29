@@ -11,7 +11,8 @@ const store = new Vuex.Store({
   state: {
     filter: null, // Username to filter shown freets by (null = show all)
     freets: [], // All freets created in the app
-    feed: [], // Feed for the logged in user
+    feed: [], //feed for the logged in user
+    feed_filter: false, //false for off and true for on
     username: null, // Username of the logged in user
     memories: [], //Memories for the logged in user
     following: [], //usernames of the users the current session user is following
@@ -92,31 +93,30 @@ const store = new Vuex.Store({
        */
       state.followers = relationships;
     },
-    updateSuggested(state, usernames) {
-      /**
-       * Updates the stored suggested to the provided users
-       * @param usernames - the users that are not followed by the current session user
-       */
-      state.suggested = usernames;
-    },
     async refreshSuggested(state) {
       const url = '/api/follow/suggested';
       const res = await fetch(url).then(async r => r.json());
       state.suggested = res.result;
     },
-    updateInteractions(state, interactions) {
-      /**
-       * Updates the stored interactions to the provided interactions
-       * @param interactions - the interactions by the current session user
-       */
-      state.interactions = interactions;
-    },
     async refreshInteractions(state) {
       const url = '/api/interactions';
       const res = await fetch(url).then(async r => r.json());
       state.interactions = res.result;
-    }
-    
+    },
+    updateFeedFilter(state, status) {
+      state.feed_filter = status;
+    },
+    async refreshFeedFilter(state) {
+      const url = '/api/filter';
+      const res = await fetch(url).then(async r => r.json());
+      state.feed_filter = res.result;
+    },
+    async refreshFeed(state) {
+      const url = '/api/follow/feed';
+      const res = await fetch(url).then(async r => r.json());
+      // console.log(res.feed);
+      state.feed = res.feed;
+    }    
   },
   // Store data across page refreshes, only discard on browser close
   plugins: [createPersistedState()]
