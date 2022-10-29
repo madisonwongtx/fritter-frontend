@@ -19,13 +19,13 @@
           v-if="$store.state.feed_filter"
           @click="switchFilter"
         >
-          Filter Off
+          Filter On
         </button>
         <button
           v-else
           @click="switchFilter"
         >
-          Filter On
+          Filter Off
         </button>
       </header>
       <section

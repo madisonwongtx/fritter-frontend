@@ -188,8 +188,8 @@ export default {
     checkType() {
       if ((typeof this.item === 'object') && ('freet' in this.item)) {
         this.isInteraction = true;
-        console.log(this.item.freet.authorId); //returns string
-        this.author = this.item.freet.authorId ? this.item.freet.authorId.username : '';
+        console.log(this.item.freet.authorId);
+        this.author = this.item.freet._id.authorId ? this.item.freet._id.authorId.username : '';
         this.freet = this.item.freet;
       } else {
         this.isInteraction = false;

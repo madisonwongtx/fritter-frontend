@@ -36,7 +36,7 @@
         Get New Good Framaritan Assessment
       </button>
     </section>
-    <section>
+    <section v-if="$store.state.quiz">
       <div>
         1. {{ $store.state.quiz.question1 }}
       </div>
@@ -299,6 +299,14 @@
 <script>
 export default {
   name: 'AssessmentPage',
+  data () {
+    return {
+      validated: false
+    };
+  },
+  mounted () {
+    console.log(this.$store.state.score);
+  },
   methods: {
     async getAssessment() {
       const url = '/api/assessment';
@@ -317,6 +325,7 @@ export default {
         this.$store.commit('updateQuestion6', 0);
         this.$store.commit('updateQuestion7', 0);
         this.$store.commit('updateQuestion8', 0);
+        this.valid = true;
         // console.log(this.$store.state.quiz);
       } catch (e) {
         this.$set(this.alerts, e, 'error');

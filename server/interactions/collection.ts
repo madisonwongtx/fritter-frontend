@@ -3,6 +3,7 @@ import type {Interaction} from './model';
 import InteractionModel from './model';
 import UserCollection from '../user/collection';
 import FreetCollection from '../freet/collection';
+import type {Freet} from '../freet/model';
 
 class InteractionCollection {
   /**
@@ -13,8 +14,20 @@ class InteractionCollection {
    */
   static async getInteractions(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<Interaction>>> {
     const session_user = await UserCollection.findOneByUserId(userId);
-    const interactions = await InteractionModel.find({user: session_user}).sort({dateCreated: -1}).populate('freet').populate('user');
+    const interactions = await InteractionModel.find({user: session_user}).populate('freet').populate('user').sort({dateCreated: -1});
     return interactions;
+  }
+
+  /**
+   *
+   */
+  static getOriginalFreet(interactions: Array<HydratedDocument<Interaction>>): Array<HydratedDocument<Freet>> {
+    const freets: Array<HydratedDocument<Freet>> = [];
+    for (const i of interactions) {
+      console.log('testing', i);
+    }
+
+    return freets;
   }
 
   /**
@@ -27,7 +40,6 @@ class InteractionCollection {
    */
   static async addInteraction(interactionType: string, freetId: Types.ObjectId | string, userId: Types.ObjectId | string): Promise<HydratedDocument<Interaction>> {
     const session_user = await UserCollection.findOneByUserId(userId);
-    console.log('inside collection');
     const curr_freet = await FreetCollection.findOne(freetId);
     const curr_date = new Date();
     const new_interaction = new InteractionModel({
@@ -52,12 +64,12 @@ class InteractionCollection {
     const session_user = await UserCollection.findOneByUserId(userId);
     const curr_freet = await FreetCollection.findOne(freetId);
     const new_date = new Date();
-    const change_interaction = await InteractionModel.findOne({freet: curr_freet, user: session_user}); // Should only be one interaction by user per freet
+    const change_interaction = await InteractionModel.findOne({freet: curr_freet, user: session_user}).populate('user').populate('freet'); // Should only be one interaction by user per freet
     change_interaction.dateCreated = new_date;
     change_interaction.interaction = new_interaction;
     await change_interaction.save();
 
-    return change_interaction;
+    return change_interaction.populate('freet', 'user');
   }
 
   /**
@@ -83,7 +95,7 @@ class InteractionCollection {
   static async findOne(userId: Types.ObjectId | string, freetId: Types.ObjectId | string): Promise<HydratedDocument<Interaction>> | undefined {
     const session_user = await UserCollection.findOneByUserId(userId);
     const curr_freet = await FreetCollection.findOne(freetId);
-    const interaction = await InteractionModel.findOne({freet: curr_freet, user: session_user});
+    const interaction = await InteractionModel.findOne({freet: curr_freet, user: session_user}).populate('user').populate('freet');
     return interaction;
   }
 
