@@ -304,9 +304,6 @@ export default {
       validated: false
     };
   },
-  mounted () {
-    console.log(this.$store.state.score);
-  },
   methods: {
     async getAssessment() {
       const url = '/api/assessment';

@@ -14,7 +14,7 @@ class InteractionCollection {
    */
   static async getInteractions(userId: Types.ObjectId | string): Promise<Array<HydratedDocument<Interaction>>> {
     const session_user = await UserCollection.findOneByUserId(userId);
-    const interactions = await InteractionModel.find({user: session_user}).populate('freet').populate('user').sort({dateCreated: -1});
+    const interactions = await InteractionModel.find({user: session_user}).populate({path: 'freet', populate: {path: 'authorId'}}).populate('user').sort({dateCreated: -1});
     return interactions;
   }
 
