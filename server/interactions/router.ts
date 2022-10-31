@@ -24,7 +24,6 @@ router.get(
   async (req: Request, res: Response) => {
     const userId = (req.session.userId as string) ?? '';
     const interactions = await InteractionCollection.getInteractions(userId);
-    // Const testing = InteractionCollection.getOriginalFreet(interactions);
     res.status(200).json({
       message: 'Here are your interactions',
       result: interactions

@@ -45,7 +45,7 @@
         {{ item ? item.content : '' }}
       </p>
       <p class="info">
-        Posted at {{ item.dateModified }}
+        Posted at {{ date }}
         <i v-if="item.edited">(edited)</i>
       </p>
       <div v-if="$store.state.username !== null">
@@ -137,7 +137,7 @@
         {{ item.freet.content }}
       </p>
       <p class="info">
-        Posted at {{ item.freet.dateModified }}
+        Posted at {{ date }}
         <i v-if="item.freet.edited">(edited)</i>
       </p>
       <div v-if="$store.state.username !== null">
@@ -161,6 +161,7 @@
 
 <script>
 import InteractionBar from '@/components/Interactions/InteractionBar.vue';
+import moment from 'moment';
 
 export default {
   name: 'FeedComponent',
@@ -177,6 +178,7 @@ export default {
       isInteraction: false,
       author: '',
       editing: false,
+      date: '',
       draft: '',
       alerts: {},
       freet: null,
@@ -184,6 +186,7 @@ export default {
   },
   mounted () {
     this.checkType();
+    this.convertDate();
   },
   methods: {
     checkType() {
@@ -191,13 +194,19 @@ export default {
         this.isInteraction = true;
         // console.log(this.item.freet.authorId);
         this.author = this.item.freet.authorId.username;
+        this.date = this.item.dateCreated;
         this.freet = this.item.freet;
       } else {
         this.isInteraction = false;
         this.author = this.item.authorId ? this.item.authorId.username : '';
         this.draft = this.item.content;
         this.freet = this.item;
+        this.date = this.item.dateModified;
       }
+    },
+    convertDate () {
+      this.date = moment(this.date).format('MMMM Do YYYY, h:mm:ss a');
+
     },
     startEditing() {
       /**

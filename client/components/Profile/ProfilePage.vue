@@ -128,7 +128,6 @@ export default {
         this.showFollowing = false;
       }
       this.showFollower = true;
-      // console.log(this.followers);
     },
     displayFollowing() {
       if (this.showFollower) {
@@ -145,7 +144,6 @@ export default {
           throw new Error (res.error);
         }
         this.contributions = res;
-        // console.log(this.contributions);
       } catch (e) {
         this.$set(this.alerts, e, 'error');
           setTimeout(() => this.$delete(this.alerts, e), 3000);

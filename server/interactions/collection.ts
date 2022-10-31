@@ -19,18 +19,6 @@ class InteractionCollection {
   }
 
   /**
-   *
-   */
-  static getOriginalFreet(interactions: Array<HydratedDocument<Interaction>>): Array<HydratedDocument<Freet>> {
-    const freets: Array<HydratedDocument<Freet>> = [];
-    for (const i of interactions) {
-      console.log('testing', i);
-    }
-
-    return freets;
-  }
-
-  /**
    * Adds an interaction to the post
    *
    * @param {string} interactionType - the type of interaction

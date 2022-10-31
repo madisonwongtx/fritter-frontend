@@ -158,7 +158,7 @@ const store = new Vuex.Store({
       const url = '/api/assessment/score';
       const res = await fetch(url).then(async r => r.json());
       state.score = res.score;
-    }  
+    }
   },
   // Store data across page refreshes, only discard on browser close
   plugins: [createPersistedState()]
