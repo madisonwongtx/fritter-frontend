@@ -65,7 +65,6 @@ export default {
         this.follow = true;
       },
       unfollowUser() {
-        // console.log(this.user.username);
         const params = {
           method: 'DELETE',
           body: JSON.stringify({user: this.user.username}),

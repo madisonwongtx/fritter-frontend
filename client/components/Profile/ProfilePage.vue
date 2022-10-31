@@ -84,13 +84,13 @@
         v-if="$store.state.username"
         to="/assessment"
       >
-        Good Framaritan Assessment
+        <button>Good Framaritan Assessment</button>
       </router-link>
       <router-link
         v-if="$store.state.username"
         to="/account"
       >
-        Settings
+        <button>Settings</button>
       </router-link>
     </section>
   </main>

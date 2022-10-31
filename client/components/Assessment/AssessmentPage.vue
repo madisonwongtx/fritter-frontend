@@ -323,7 +323,6 @@ export default {
         this.$store.commit('updateQuestion7', 0);
         this.$store.commit('updateQuestion8', 0);
         this.valid = true;
-        // console.log(this.$store.state.quiz);
       } catch (e) {
         this.$set(this.alerts, e, 'error');
         setTimeout(() => this.$delete(this.alerts, e), 3000);

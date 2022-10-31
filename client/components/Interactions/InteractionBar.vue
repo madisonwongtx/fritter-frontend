@@ -171,7 +171,6 @@ export default {
     addInteraction(interaction_type) {
       if (this.any) {
         this.changeInteraction(interaction_type);
-        console.log('hello');
         return;
       } else {
         const params = {

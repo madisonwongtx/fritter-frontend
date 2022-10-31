@@ -124,7 +124,6 @@ const store = new Vuex.Store({
     async refreshFeed(state) {
       const url = '/api/follow/feed';
       const res = await fetch(url).then(async r => r.json());
-      // console.log(res.feed);
       state.feed = res.feed;
     },
     updateQuiz(state, questions) {

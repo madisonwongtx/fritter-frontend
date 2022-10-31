@@ -142,6 +142,7 @@ router.get(
   async (req: Request, res: Response) => {
     const userId = (req.session.userId as string) ?? '';
     const feed_ = await FollowCollection.getFeed(userId);
+    console.log(feed_);
     res.status(200).json({
       message: 'Here is your feed',
       feed: feed_

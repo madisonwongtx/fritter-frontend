@@ -106,7 +106,7 @@ class FollowCollection {
     }
 
     const combined: Array<HydratedDocument<Freet | Interaction>> = [...interactions, ...posts];
-    return combined.sort((a, b) => (a.dateCreated < b.dateCreated) ? -1 : 1); // Sort in reverse order
+    return combined.sort((a, b) => (a.dateCreated < b.dateCreated) ? 1 : -1); // Sort in reverse order
   }
 
   /**

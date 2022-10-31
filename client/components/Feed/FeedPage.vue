@@ -15,25 +15,27 @@
             Home Feed
           </h2>
         </div>
-        <button
-          v-if="$store.state.feed_filter"
-          @click="switchFilter"
-        >
-          Filter On
-        </button>
-        <button
-          v-else
-          @click="switchFilter"
-        >
-          Filter Off
-        </button>
+        <div>
+          <button
+            v-if="$store.state.feed_filter"
+            @click="switchFilter"
+          >
+            Show Interactions and Freets
+          </button>
+          <button
+            v-else
+            @click="switchFilter"
+          >
+            Show Freets Only
+          </button>
+        </div>
       </header>
       <section
         v-if="$store.state.feed.length"
       >
         <FeedComponent
           v-for="item in $store.state.feed"
-          :key="item.id"
+          :key="item._id"
           :item="item"
         />
       </section>
@@ -60,6 +62,7 @@ export default {
   },
   created() {
     this.checkFeed();
+    console.log(this.$store.state.feed);
   },
   methods: {
     checkFeed() {
@@ -83,7 +86,9 @@ export default {
         if(!r.ok) {
           throw new Error (res.error);
         }
-        this.checkFeed();
+        this.$store.commit('refreshFeedFilter');
+        this.$store.commit('refreshFeed');
+        // console.log(this.$store.state.feed_filter);
       } catch (e) {
         this.$set(this.alerts, e, 'error');
         setTimeout(() => this.$delete(this.alerts, e), 3000);

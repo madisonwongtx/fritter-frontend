@@ -134,7 +134,7 @@
         v-else
         class="content"
       >
-        {{ item.freet.content }}
+        {{ item ? item.freet.content : '' }}
       </p>
       <p class="info">
         Posted at {{ date }}
@@ -184,12 +184,18 @@ export default {
       freet: null,
     };
   },
+  created () {
+    // console.log(this.item);
+    this.checkType();
+    this.convertDate();
+  },
   mounted () {
     this.checkType();
     this.convertDate();
   },
   methods: {
     checkType() {
+      // console.log(this.item);
       if ((typeof this.item === 'object') && ('freet' in this.item)) {
         this.isInteraction = true;
         // console.log(this.item.freet.authorId);
@@ -201,6 +207,8 @@ export default {
         this.author = this.item.authorId ? this.item.authorId.username : '';
         this.draft = this.item.content;
         this.freet = this.item;
+        // console.log(this.freet);
+        // console.log(this.freet.content);
         this.date = this.item.dateModified;
       }
     },
