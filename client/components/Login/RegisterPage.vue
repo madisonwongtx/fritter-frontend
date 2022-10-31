@@ -2,7 +2,7 @@
   <main>
     <section>
       <header>
-        <h2>New to Fritter?</h2>
+        <h2 class="welcome">New to Fritter?</h2>
       </header>
       <RegisterForm />
     </section>
@@ -27,3 +27,15 @@ export default {
 };
 </script>
 
+<style scoped>
+.welcome {
+  text-align: center;
+  font-size: 85px; 
+  margin-bottom: 0;
+}
+
+section {
+  text-align: center;
+}
+
+</style>

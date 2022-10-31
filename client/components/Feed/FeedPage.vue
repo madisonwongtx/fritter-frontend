@@ -88,7 +88,6 @@ export default {
         }
         this.$store.commit('refreshFeedFilter');
         this.$store.commit('refreshFeed');
-        // console.log(this.$store.state.feed_filter);
       } catch (e) {
         this.$set(this.alerts, e, 'error');
         setTimeout(() => this.$delete(this.alerts, e), 3000);

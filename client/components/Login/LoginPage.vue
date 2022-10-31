@@ -27,3 +27,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  section {
+    text-align: center;
+  }
+</style>

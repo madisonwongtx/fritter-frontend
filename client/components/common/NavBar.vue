@@ -11,27 +11,32 @@
       </h1>
     </div>
     <div class="right">
-      <router-link to="/">
-        Home🏠
-      </router-link>
-      <router-link
-        v-if="$store.state.username"
-        to="/profile"
-      >
-        Profile👤
-      </router-link>
-      <router-link
-        v-else
-        to="/login"
-      >
-        Login
-      </router-link>
-      <router-link
-        v-if="$store.state.username"
-        to="/follow"
-      >
-        Find Others🔍
-      </router-link>
+      <button class="button">
+        <router-link 
+          class="inside" 
+          to="/"
+        >
+          Home🏠
+        </router-link>
+      </button>
+      <button class="button">
+        <router-link
+          class="inside"
+          v-if="$store.state.username"
+          to="/profile"
+        >
+          Profile👤
+        </router-link>
+      </button>
+      <button class="button">
+        <router-link
+          class="inside"
+          v-if="$store.state.username"
+          to="/follow"
+        >
+          Find Others🔍
+        </router-link>
+      </button>
     </div>
     <section class="alerts">
       <article
@@ -48,7 +53,7 @@
 <style scoped>
 nav {
     padding: 1vw 2vw;
-    background-color: #ccc;
+    background-color: rgb(133, 226, 197);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -56,8 +61,10 @@ nav {
 }
 
 .title {
-    font-size: 32px;
+    font-size: 36px;
     margin: 0 5px;
+    font-weight: 2000;
+    color: rgb(255, 255, 255)
 }
 
 img {
@@ -79,6 +86,23 @@ img {
 
 .right a {
     margin-left: 5px;
+}
+
+.button {
+  background-color: rgb(252, 252, 252);
+  color: rgb(105, 231, 199);
+  padding: 5px;
+  border-radius: 20px;
+  border: none;
+}
+
+.inside{
+  font-family: "Poppins";
+  font-size: 18px;
+  color: rgb(0, 2, 2);
+  margin-left: 5px;
+  margin-right: 5px;
+  text-decoration: none;
 }
 
 .alerts {

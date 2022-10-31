@@ -32,6 +32,7 @@
     </article>
     <button
       type="submit"
+      class="button"
     >
       {{ title }}
     </button>

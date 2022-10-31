@@ -4,7 +4,7 @@
       <FeedPage />
     </section>
     <section v-else>
-      <h2>Fritter</h2>
+      <h2 class="welcome">Fritter</h2>
       <LoginPage/>
     </section>
   </main>
@@ -19,3 +19,12 @@ export default {
   components: {FeedPage, LoginPage}
 }
 </script>
+
+<style scoped>
+.welcome {
+  text-align: center;
+  font-size: 85px; 
+  margin-bottom: 0;
+}
+
+</style>

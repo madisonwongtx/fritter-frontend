@@ -33,6 +33,12 @@ export default {
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Poppins";
+  src: local("Poppins"),
+  url(../fonts/Poppins-ExtraLight.ttf) format("truetype");
+}
+
 body {
   height: 100vh;
   flex-direction: column;
@@ -40,6 +46,7 @@ body {
   padding: 0;
   margin: 0;
   font-size: 1.2em;
+  font-family: "Poppins";
 }
 
 main {
@@ -55,6 +62,7 @@ main {
     transform: translate(-50%, 10%);
     width: 100%;
     text-align: center;
+    font-family: "Poppins"
 }
 
 .alerts article {
