@@ -17,12 +17,14 @@
         </div>
         <div>
           <button
+            class="button"
             v-if="$store.state.feed_filter"
             @click="switchFilter"
           >
             Show Interactions and Freets
           </button>
           <button
+            class="button"
             v-else
             @click="switchFilter"
           >
@@ -109,9 +111,20 @@ header, header > * {
     align-items: center;
 }
 
-button {
-    margin-right: 10px;
+.button {
+  background-color: rgb(133, 226, 197);
+  color: rgb(8, 12, 11);
+  border-radius: 50px;
+  border: none;
+  text-decoration: none;
+  font-weight: bold;
+  margin:auto;
+  width: 175px;
+  height: 50px;
+  font-size: 15px;
+  font-family: "Poppins";
 }
+
 
 section .scrollbox {
   flex: 1 0 50vh;

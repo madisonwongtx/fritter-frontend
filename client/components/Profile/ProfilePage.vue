@@ -8,8 +8,27 @@
         <h2>Profile for @{{ $store.state.username }}</h2>
       </header>
     </section>
-
-    <div>
+    <section class="options">
+      <router-link
+        v-if="$store.state.username"
+        to="/memories"
+      >
+        <button>Memories 💫</button>
+      </router-link>
+      <router-link
+        v-if="$store.state.username"
+        to="/assessment"
+      >
+        <button>Good Framaritan Assessment 🧠</button>
+      </router-link>
+      <router-link
+        v-if="$store.state.username"
+        to="/account"
+      >
+        <button>Settings ⚙️</button>
+      </router-link>
+    </section>
+    <div class="follow">
       <button
         @click="displayFollower"
       >
@@ -23,6 +42,7 @@
     </div>
     <div
       v-if="showFollower"
+      class="show"
     >
       <div
         v-if="$store.state.followers.length"
@@ -41,6 +61,7 @@
     </div>
     <div
       v-if="showFollowing"
+      class="show"
     >
       <div
         v-if="$store.state.following.length"
@@ -58,7 +79,6 @@
         You are not following any users 
       </div>
     </div>
-
     <section>
       <h2>Your Contributions</h2>
       <section
@@ -76,36 +96,17 @@
         <h3>No posts yet!</h3>
       </section>
     </section>
-    <section>
-      <MemoriesPage />
-    </section>
-    <section>
-      <router-link
-        v-if="$store.state.username"
-        to="/assessment"
-      >
-        <button>Good Framaritan Assessment</button>
-      </router-link>
-      <router-link
-        v-if="$store.state.username"
-        to="/account"
-      >
-        <button>Settings</button>
-      </router-link>
-    </section>
   </main>
 </template>
 
 <script>
 
-import MemoriesPage from '@/components/Memories/MemoriesPage.vue';
 import FreetComponent from '@/components/Freet/FreetComponent.vue';
 import UserComponent from '@/components/Follow/UserComponent.vue';
 
 export default {
   name: 'ProfilePage',
   components: {
-    MemoriesPage,
     FreetComponent,
     UserComponent
   },
@@ -117,7 +118,6 @@ export default {
     };
   },
   created() {
-    MemoriesPage;
     this.getContributions();
     this.getFollowers();
     this.getFollowing();
@@ -191,6 +191,8 @@ header, header > * {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 45px;
+    margin-bottom: 0;
 }
 
 button {
@@ -209,6 +211,39 @@ section .scrollbox {
   gap: 16px;
   grid-auto-flow: column;
   align-items: center;
+}
+
+.follow button {
+  width: 150px;
+  background-color: white;
+  border-radius: 8px;
+  border-width: 1px;
+  width: 200px;
+  border-style: dotted;
+  font-family: "Poppins";
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.show {
+  margin-top: 5px;
+  border-top-width: 5px;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.options button {
+  font-family: "Poppins";
+  font-size: 20px;
+  background-color: rgb(169, 245, 226);
+  border-radius: 8px;
+  border-width: 0px;
+  margin-bottom: 15px;
+  margin-right: 5px;
 }
 </style>
 

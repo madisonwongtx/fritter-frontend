@@ -96,13 +96,15 @@ class FollowCollection {
       userIds.push(_id);
     }
 
+    usernames.push(session_user.username);
+    userIds.push(session_user._id);
     const posts_nested = await Promise.all(usernames.map(FreetCollection.findAllByUsername));
     const posts: Array<HydratedDocument<Freet>> = posts_nested.flat(); // Flattens to 1D
     const interactions_nested = await Promise.all(userIds.map(InteractionCollection.getInteractions));
     const interactions: Array<HydratedDocument<Interaction>> = interactions_nested.flat();
 
     if (filterStatus) { // Just posts
-      return posts.sort((a, b) => (a.dateCreated < b.dateCreated) ? -1 : 1);
+      return posts.sort((a, b) => (a.dateCreated < b.dateCreated) ? 1 : -1);
     }
 
     const combined: Array<HydratedDocument<Freet | Interaction>> = [...interactions, ...posts];

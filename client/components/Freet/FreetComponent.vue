@@ -9,6 +9,31 @@
       <h3 class="author">
         @{{ freet.author }}
       </h3>
+    </header>
+    <textarea
+      v-if="editing"
+      class="content"
+      :value="draft"
+      @input="draft = $event.target.value"
+    />
+    <p
+      v-else
+      class="content"
+    >
+      {{ freet.content }}
+    </p>
+    <p class="info">
+      Posted at {{ freet.dateModified }}
+      <i v-if="freet.edited">(edited)</i>
+    </p>
+    <div 
+      class="bottom"
+      v-if="$store.state.username !== null"
+    >
+      <InteractionBar
+        v-if="!editing"
+        :freet="freet" 
+      />
       <div
         v-if="$store.state.username === freet.author"
         class="actions"
@@ -35,28 +60,6 @@
           🗑️ Delete
         </button>
       </div>
-    </header>
-    <textarea
-      v-if="editing"
-      class="content"
-      :value="draft"
-      @input="draft = $event.target.value"
-    />
-    <p
-      v-else
-      class="content"
-    >
-      {{ freet.content }}
-    </p>
-    <p class="info">
-      Posted at {{ freet.dateModified }}
-      <i v-if="freet.edited">(edited)</i>
-    </p>
-    <div v-if="$store.state.username !== null">
-      <InteractionBar
-        v-if="!editing"
-        :freet="freet" 
-      />
     </div>
     <section class="alerts">
       <article
@@ -179,7 +182,30 @@ export default {
 <style scoped>
 .freet {
     border: 1px solid #111;
+    border-style: dashed;
+    border-radius: 15px;
+    margin-bottom: 10px;
     padding: 20px;
     position: relative;
 }
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.actions button {
+  border-radius: 18px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.actions{
+  /* how do i put on right side */
+}
+
+.content {
+  font-weight: bold;
+}
+
 </style>

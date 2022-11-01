@@ -77,8 +77,11 @@ section {
 
 header, header > * {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: left;
+    font-size: 30px;
+    margin-bottom: 0px;
 }
 
 button {

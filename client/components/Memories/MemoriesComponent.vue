@@ -292,9 +292,31 @@ export default {
 </script>
 
 <style scoped>
+
 .item {
     border: 1px solid #111;
+    border-style: dashed;
+    border-radius: 15px;
+    margin-bottom: 10px;
     padding: 20px;
     position: relative;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+}
+
+.actions button {
+  border-radius: 18px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.actions{
+  /* how do i put on right side */
+}
+
+.content {
+  font-weight: bold;
 }
 </style>

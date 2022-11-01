@@ -5,6 +5,31 @@
         <h3 class="author">
           @{{ author }}
         </h3>
+      </header>
+      <textarea
+        v-if="editing"
+        class="content"
+        :value="draft"
+        @input="draft = $event.target.value"
+      />
+      <p
+        v-else
+        class="content"
+      >
+        {{ item ? item.content : '' }}
+      </p>
+      <p class="info">
+        Posted at {{ date }}
+        <i v-if="item.edited">(edited)</i>
+      </p>
+      <div 
+        class="bottom"
+        v-if="$store.state.username !== null"
+      >
+        <InteractionBar
+          v-if="!editing"
+          :freet="item" 
+        />
         <div
           v-if="$store.state.username === author"
           class="actions"
@@ -31,28 +56,6 @@
             🗑️ Delete
           </button>
         </div>
-      </header>
-      <textarea
-        v-if="editing"
-        class="content"
-        :value="draft"
-        @input="draft = $event.target.value"
-      />
-      <p
-        v-else
-        class="content"
-      >
-        {{ item ? item.content : '' }}
-      </p>
-      <p class="info">
-        Posted at {{ date }}
-        <i v-if="item.edited">(edited)</i>
-      </p>
-      <div v-if="$store.state.username !== null">
-        <InteractionBar
-          v-if="!editing"
-          :freet="item" 
-        />
       </div>
       <section class="alerts">
         <article
@@ -97,6 +100,31 @@
         <h3 class="author">
           @{{ author }}
         </h3>
+      </header>
+      <textarea
+        v-if="editing"
+        class="content"
+        :value="draft"
+        @input="draft = $event.target.value"
+      />
+      <p
+        v-else
+        class="content"
+      >
+        {{ item ? item.freet.content : '' }}
+      </p>
+      <p class="info">
+        Posted at {{ date }}
+        <i v-if="item.freet.edited">(edited)</i>
+      </p>
+      <div 
+        class="bottom"
+        v-if="$store.state.username !== null"
+      >
+        <InteractionBar
+          v-if="!editing"
+          :freet="item.freet" 
+        />
         <div
           v-if="$store.state.username === author"
           class="actions"
@@ -123,28 +151,6 @@
             🗑️ Delete
           </button>
         </div>
-      </header>
-      <textarea
-        v-if="editing"
-        class="content"
-        :value="draft"
-        @input="draft = $event.target.value"
-      />
-      <p
-        v-else
-        class="content"
-      >
-        {{ item ? item.freet.content : '' }}
-      </p>
-      <p class="info">
-        Posted at {{ date }}
-        <i v-if="item.freet.edited">(edited)</i>
-      </p>
-      <div v-if="$store.state.username !== null">
-        <InteractionBar
-          v-if="!editing"
-          :freet="item.freet" 
-        />
       </div>
       <section class="alerts">
         <article
@@ -195,10 +201,8 @@ export default {
   },
   methods: {
     checkType() {
-      // console.log(this.item);
       if ((typeof this.item === 'object') && ('freet' in this.item)) {
         this.isInteraction = true;
-        // console.log(this.item.freet.authorId);
         this.author = this.item.freet.authorId.username;
         this.date = this.item.dateCreated;
         this.freet = this.item.freet;
@@ -207,8 +211,6 @@ export default {
         this.author = this.item.authorId ? this.item.authorId.username : '';
         this.draft = this.item.content;
         this.freet = this.item;
-        // console.log(this.freet);
-        // console.log(this.freet.content);
         this.date = this.item.dateModified;
       }
     },
@@ -303,9 +305,34 @@ export default {
 <style scoped>
 .item {
     border: 1px solid #111;
+    border-style: dashed;
+    border-radius: 15px;
+    margin-bottom: 10px;
     padding: 20px;
     position: relative;
 }
+
+.bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.actions button {
+  border-radius: 18px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.actions{
+  /* how do i put on right side */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.content {
+  font-weight: bold;
+}
+
 </style>
 
 

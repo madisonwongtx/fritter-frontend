@@ -3,14 +3,14 @@
   <div>
     <button
       v-if="i_type !== 'heart'"
-      style="background-color: aliceblue"
+      style="background-color: white"
       @click="addInteraction('heart')"
     >
       ❤️
     </button>
     <button
       v-else
-      style="background-color:aquamarine"
+      style="background-color:rgb(133, 226, 197)"
       @click="deleteInteraction"
     >
       ❤️
@@ -18,14 +18,14 @@
 
     <button
       v-if="i_type !== 'thumbs up'"
-      style="background-color: aliceblue"
+      style="background-color: white"
       @click="addInteraction('thumbs up')"
     >
       👍
     </button>
     <button
       v-else
-      style="background-color:aquamarine"
+      style="background-color:rgb(133, 226, 197)"
       @click="deleteInteraction"
     >
       👍
@@ -33,14 +33,14 @@
 
     <button
       v-if="i_type !== 'thumbs down'"
-      style="background-color: aliceblue"
+      style="background-color: white"
       @click="addInteraction('thumbs down')"
     >
       👎 
     </button>
     <button
       v-else
-      style="background-color:aquamarine"
+      style="background-color:rgb(133, 226, 197)"
       @click="deleteInteraction"
     >
       👎
@@ -48,14 +48,14 @@
 
     <button
       v-if="i_type !== 'happy'"
-      style="background-color: aliceblue"
+      style="background-color: white"
       @click="addInteraction('happy')"
     >
       😁
     </button>
     <button
       v-else
-      style="background-color:aquamarine"
+      style="background-color:rgb(133, 226, 197)"
       @click="deleteInteraction"
     >
       😁
@@ -63,14 +63,14 @@
 
     <button
       v-if="i_type !== 'sad'"
-      style="background-color: aliceblue"
+      style="background-color: white"
       @click="addInteraction('sad')"
     >
       😢
     </button>
     <button
       v-else
-      style="background-color:aquamarine"
+      style="background-color:rgb(133, 226, 197)"
       @click="deleteInteraction"
     >
       😢
@@ -78,14 +78,14 @@
 
     <button
       v-if="i_type !== 'angry'"
-      style="background-color: aliceblue"
+      style="background-color: white"
       @click="addInteraction('angry')"
     >
       😡
     </button>
     <button
       v-else
-      style="background-color:aquamarine"
+      style="background-color:rgb(133, 226, 197)"
       @click="deleteInteraction"
     >
       😡
@@ -93,14 +93,14 @@
 
     <button
       v-if="i_type !== 'clapping'"
-      style="background-color: aliceblue"
+      style="background-color: white"
       @click="addInteraction('clapping')"
     >
       👏
     </button>
     <button
       v-else
-      style="background-color:aquamarine"
+      style="background-color:rgb(133, 226, 197)"
       @click="deleteInteraction"
     >
       👏
@@ -108,14 +108,14 @@
 
     <button
       v-if="i_type !== 'laughing'"
-      style="background-color: aliceblue"
+      style="background-color: white"
       @click="addInteraction('laughing')"
     >
       😂
     </button>
     <button
       v-else
-      style="background-color:aquamarine"
+      style="background-color:rgb(133, 226, 197)"
       @click="deleteInteraction"
     >
       😂
@@ -123,14 +123,14 @@
 
     <button
       v-if="i_type !== 'dead'"
-      style="background-color: aliceblue"
+      style="background-color: white"
       @click="addInteraction('dead')"
     >
       💀
     </button>
     <button
       v-else
-      style="background-color:aquamarine"
+      style="background-color:rgb(133, 226, 197)"
       @click="deleteInteraction"
     >
       💀
@@ -247,3 +247,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+button {
+  background-color: white;
+  border-radius: 100px;
+  border-width: 1px;
+  font-size: 15px;
+  margin: 2px;
+}
+</style>

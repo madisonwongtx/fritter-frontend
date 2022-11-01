@@ -3,6 +3,21 @@
     <header>
       <h2>Good Framaritan Assessment</h2>
       <p>Help keep Fritter a healthy and expressive space.</p>
+      <section class="score">
+        <h3>Current Score: {{ $store.state.score }}</h3>
+        <h3
+          v-if="$store.state.score < 5/8*100"
+          style="color:red"
+        >
+          Last Attempt Failed
+        </h3>
+        <h3
+          v-else
+          style="color:forestgreen"
+        >
+          Last Attempt Passed!
+        </h3>
+      </section>
       <h4>How the Assessment Works: </h4>
       <p>Below you can request an assessement. The assessment will have eight options
         and you must select all the behaviors that are acceptable on the platform. After you hit submit you assessment,
@@ -15,271 +30,260 @@
       </p>
     </header>
     <section>
-      <h3>Current Status: {{ $store.state.score }}</h3>
-      <h5
-        v-if="$store.state.score < 5/8*100"
-        style="color:red"
-      >
-        Last Attempt Failed
-      </h5>
-      <h5
-        v-else
-        style="color:forestgreen"
-      >
-        Last Attempt Passed!
-      </h5>
-    </section>
-    <section>
       <button
+        class="request"
         @click="getAssessment"
       >
         Get New Good Framaritan Assessment
       </button>
     </section>
-    <section v-if="$store.state.quiz">
-      <div>
+    <section 
+      class="quiz"
+      v-if="$store.state.quiz"
+    >
+      <div class="question">
         1. {{ $store.state.quiz.question1 }}
       </div>
-      <div>
+      <div class="answer">
         <button 
           v-if="$store.state.question1===1"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(1, 1)"
         >
           Acceptable
         </button>
         <button 
           v-if="$store.state.question1===2"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Not Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(1, 2)"
         >
           Not Acceptable
         </button>
       </div>
-      <div>
+      <div class="question">
         2. {{ $store.state.quiz.question2 }}
       </div>
-      <div>
+      <div class="answer">
         <button 
           v-if="$store.state.question2===1"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(2, 1)"
         >
           Acceptable
         </button>
         <button 
           v-if="$store.state.question2===2"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Not Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(2, 2)"
         >
           Not Acceptable
         </button>
       </div>
-      <div>
+      <div class="question">
         3. {{ $store.state.quiz.question3 }}
       </div>
-      <div>
+      <div class="answer">
         <button 
           v-if="$store.state.question3===1"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(3, 1)"
         >
           Acceptable
         </button>
         <button 
           v-if="$store.state.question3===2"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Not Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(3, 2)"
         >
           Not Acceptable
         </button>
       </div>
-      <div>
+      <div class="question">
         4. {{ $store.state.quiz.question4 }}
       </div>
-      <div>
+      <div class="answer">
         <button 
           v-if="$store.state.question4===1"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(4, 1)"
         >
           Acceptable
         </button>
         <button 
           v-if="$store.state.question4===2"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Not Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(4, 2)"
         >
           Not Acceptable
         </button>
       </div>
-      <div>
+      <div class="question">
         5. {{ $store.state.quiz.question5 }}
       </div>
-      <div>
+      <div class="answer">
         <button 
           v-if="$store.state.question5===1"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(5, 1)"
         >
           Acceptable
         </button>
         <button 
           v-if="$store.state.question5===2"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Not Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(5, 2)"
         >
           Not Acceptable
         </button>
       </div>
-      <div>
+      <div class="question">
         6. {{ $store.state.quiz.question6 }}
       </div>
-      <div>
+      <div class="answer">
         <button 
           v-if="$store.state.question6===1"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(6, 1)"
         >
           Acceptable
         </button>
         <button 
           v-if="$store.state.question6===2"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Not Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(6, 2)"
         >
           Not Acceptable
         </button>
       </div>
-      <div>
+      <div class="question">
         7. {{ $store.state.quiz.question7 }}
       </div>
-      <div>
+      <div class="answer">
         <button 
           v-if="$store.state.question7===1"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(7, 1)"
         >
           Acceptable
         </button>
         <button 
           v-if="$store.state.question7===2"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Not Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(7, 2)"
         >
           Not Acceptable
         </button>
       </div>
-      <div>
+      <div class="question">
         8. {{ $store.state.quiz.question8 }}
       </div>
-      <div>
+      <div class="answer">
         <button 
           v-if="$store.state.question8===1"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(8, 1)"
         >
           Acceptable
         </button>
         <button 
           v-if="$store.state.question8===2"
-          style="background-color:aquamarine"
+          style="background-color:rgb(133, 226, 197)"
         >
           Not Acceptable
         </button>
         <button 
           v-else
-          style="background-color:aliceblue"
+          style="background-color:white"
           @click="switchStatus(8, 2)"
         >
           Not Acceptable
@@ -289,6 +293,7 @@
     <section>
       <button
         @click="gradeQuiz"
+        class="submit"
       >
         Submit Quiz
       </button>
@@ -398,3 +403,53 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+h2 {
+  font-size: 40px;
+  margin-bottom: 0px;
+}
+
+score {
+  display: flex;
+  flex-direction: row;
+}
+
+.question {
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.quiz {
+  border: 3px dotted rgb(48, 224, 168);
+}
+
+.answer button{
+  border-radius: 15px;
+  margin-left: 10px;
+  border: 2px solid rgb(48, 224, 168);
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.request {
+  background-color: rgb(133, 226, 197);
+  width: 500px;
+  height: 50px;
+  border-radius: 20px;
+  border: 3px solid rgb(48, 224, 168);
+  margin-bottom: 15px;
+  font-family: "Poppins";
+  font-size: 18px;
+}
+
+.submit {
+  background-color:  rgb(133, 226, 197);
+  font-family: "Poppins";
+  border: 3px solid rgb(48, 224, 168);
+  border-radius: 18px;
+  margin-top: 20px;
+  font-size: 20px;
+}
+</style>

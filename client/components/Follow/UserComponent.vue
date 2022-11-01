@@ -115,5 +115,16 @@ export default {
     border: 1px solid #111;
     padding: 20px;
     position: relative;
+    width: 410px;
+    border-style: dashed;
+    border-radius: 10px;
+    margin-bottom: 2px;
+}
+
+button {
+  font-family: "Poppins";
+  font-weight: bold;
+  border-radius: 10px;
+  background-color: whitesmoke;
 }
 </style>
