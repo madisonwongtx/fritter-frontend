@@ -1,5 +1,11 @@
 <template>
   <main>
+    <router-link
+      class="back"
+      to="/profile"
+    >
+      ← Back to Profile
+    </router-link>
     <section>
       <header>
         <h2>Memories for @{{ $store.state.username }}</h2>
@@ -86,6 +92,10 @@ header, header > * {
 
 button {
     margin-right: 10px;
+}
+
+.back {
+  font-size: 20px;
 }
 
 section .scrollbox {

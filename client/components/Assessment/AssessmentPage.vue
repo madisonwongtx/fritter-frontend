@@ -1,5 +1,11 @@
 <template>
   <main>
+    <router-link
+      class="back"
+      to="/profile"
+    >
+      ← Back to Profile
+    </router-link>
     <header>
       <h2>Good Framaritan Assessment</h2>
       <p>Help keep Fritter a healthy and expressive space.</p>
@@ -450,6 +456,10 @@ score {
   border: 3px solid #fa8072;
   border-radius: 18px;
   margin-top: 20px;
+  font-size: 20px;
+}
+
+.back {
   font-size: 20px;
 }
 </style>

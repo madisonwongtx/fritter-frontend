@@ -3,6 +3,12 @@
 
 <template>
   <main>
+    <router-link
+      class="back"
+      to="/profile"
+    >
+      ← Back to Profile
+    </router-link>
     <section>
       <header>
         <h2>Account settings for @{{ $store.state.username }}</h2>
@@ -41,4 +47,8 @@ export default {
   h2 {
     font-size: 40px;
   }
+
+  .back {
+  font-size: 20px;
+}
 </style>
