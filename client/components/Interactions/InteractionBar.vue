@@ -10,7 +10,7 @@
     </button>
     <button
       v-else
-      style="background-color:rgb(133, 226, 197)"
+      style="background-color:#ff9999"
       @click="deleteInteraction"
     >
       ❤️
@@ -25,7 +25,7 @@
     </button>
     <button
       v-else
-      style="background-color:rgb(133, 226, 197)"
+      style="background-color:#ff9999"
       @click="deleteInteraction"
     >
       👍
@@ -40,7 +40,7 @@
     </button>
     <button
       v-else
-      style="background-color:rgb(133, 226, 197)"
+      style="background-color:#ff9999"
       @click="deleteInteraction"
     >
       👎
@@ -55,7 +55,7 @@
     </button>
     <button
       v-else
-      style="background-color:rgb(133, 226, 197)"
+      style="background-color:#ff9999"
       @click="deleteInteraction"
     >
       😁
@@ -70,7 +70,7 @@
     </button>
     <button
       v-else
-      style="background-color:rgb(133, 226, 197)"
+      style="background-color:#ff9999"
       @click="deleteInteraction"
     >
       😢
@@ -85,7 +85,7 @@
     </button>
     <button
       v-else
-      style="background-color:rgb(133, 226, 197)"
+      style="background-color:#ff9999"
       @click="deleteInteraction"
     >
       😡
@@ -100,7 +100,7 @@
     </button>
     <button
       v-else
-      style="background-color:rgb(133, 226, 197)"
+      style="background-color:#ff9999"
       @click="deleteInteraction"
     >
       👏
@@ -115,7 +115,7 @@
     </button>
     <button
       v-else
-      style="background-color:rgb(133, 226, 197)"
+      style="background-color:#ff9999"
       @click="deleteInteraction"
     >
       😂
@@ -130,7 +130,7 @@
     </button>
     <button
       v-else
-      style="background-color:rgb(133, 226, 197)"
+      style="background-color:#ff9999"
       @click="deleteInteraction"
     >
       💀
@@ -251,9 +251,11 @@ export default {
 <style scoped>
 button {
   background-color: white;
+  border: none;
   border-radius: 100px;
   border-width: 1px;
-  font-size: 15px;
-  margin: 2px;
+  font-size: 20px;
+  margin-right: 0px;
+  width: 50px;
 }
 </style>

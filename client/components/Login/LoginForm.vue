@@ -48,10 +48,10 @@ article > div {
 }
 
 .button {
-  background-color: rgb(133, 226, 197);
+  background-color: #ff9999;
   color: rgb(8, 12, 11);
   border-radius: 50px;
-  border: none;
+  border: 3px solid #fa8072;
   text-decoration: none;
   margin:auto;
   width: 150px;

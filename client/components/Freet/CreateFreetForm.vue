@@ -58,13 +58,14 @@ form h3 {
 }
 
 .button{
-  background-color: rgb(133, 226, 197);
+  background-color: #ff9999;
   border-radius: 50px;
   border: none;
   text-decoration: none;
   width: 150px;
   height: 40px;
   font-family: "Poppins";
+  border: 3px solid #fa8072;
   font-weight: bold;
 }
 

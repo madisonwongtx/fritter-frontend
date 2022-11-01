@@ -3,43 +3,23 @@
 
 <template>
   <main>
-    <section>
+    <section class="top">
       <header>
         <h2>Profile for @{{ $store.state.username }}</h2>
       </header>
+      <div class="follow">
+        <button
+          @click="displayFollower"
+        >
+          Followers <br /> {{ $store.state.followers.length }}
+        </button>
+        <button
+          @click="displayFollowing"
+        >
+          Following <br /> {{ $store.state.following.length }}
+        </button>
+      </div>
     </section>
-    <section class="options">
-      <router-link
-        v-if="$store.state.username"
-        to="/memories"
-      >
-        <button>Memories 💫</button>
-      </router-link>
-      <router-link
-        v-if="$store.state.username"
-        to="/assessment"
-      >
-        <button>Good Framaritan Assessment 🧠</button>
-      </router-link>
-      <router-link
-        v-if="$store.state.username"
-        to="/account"
-      >
-        <button>Settings ⚙️</button>
-      </router-link>
-    </section>
-    <div class="follow">
-      <button
-        @click="displayFollower"
-      >
-        Followers <br /> {{ $store.state.followers.length }}
-      </button>
-      <button
-        @click="displayFollowing"
-      >
-        Following <br /> {{ $store.state.following.length }}
-      </button>
-    </div>
     <div
       v-if="showFollower"
       class="show"
@@ -79,6 +59,26 @@
         You are not following any users 
       </div>
     </div>
+    <section class="options">
+      <router-link
+        v-if="$store.state.username"
+        to="/memories"
+      >
+        <button>Memories 💫</button>
+      </router-link>
+      <router-link
+        v-if="$store.state.username"
+        to="/assessment"
+      >
+        <button>Good Framaritan Assessment 🧠</button>
+      </router-link>
+      <router-link
+        v-if="$store.state.username"
+        to="/account"
+      >
+        <button>Settings ⚙️</button>
+      </router-link>
+    </section>
     <section>
       <h2>Your Contributions</h2>
       <section
@@ -205,6 +205,9 @@ section .scrollbox {
   overflow-y: scroll;
 }
 
+h2 {
+  text-align: center;
+}
 .newPage {
   font-size: 20px;
   display: grid;
@@ -218,7 +221,7 @@ section .scrollbox {
   background-color: white;
   border-radius: 8px;
   border-width: 1px;
-  width: 200px;
+  width: 300px;
   border-style: dotted;
   font-family: "Poppins";
   font-weight: bold;
@@ -228,22 +231,38 @@ section .scrollbox {
 .show {
   margin-top: 5px;
   border-top-width: 5px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 800px;
 }
 
 .options {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   margin-top: 20px;
 }
 
 .options button {
   font-family: "Poppins";
-  font-size: 20px;
-  background-color: rgb(169, 245, 226);
-  border-radius: 8px;
-  border-width: 0px;
-  margin-bottom: 15px;
-  margin-right: 5px;
+  font-size: 25px;
+  background-color: #ff9999;
+  border-radius: 50px;
+  border: 3px solid #fa8072;
+  margin-bottom: 0px;
+  width: 500px;
+  height: 50px;
+}
+
+.top {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 50px;
+}
+
+.follow {
+  margin-left: 200px;
+  margin-top: 50px;
 }
 </style>
 

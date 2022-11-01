@@ -24,3 +24,51 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+form {
+  border-top: 0px dotted #111;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  position: relative;
+  font-size: 25px;
+}
+
+article > div {
+  display: flex;
+  flex-direction: column;
+}
+
+form > article p {
+  margin: 0;
+}
+
+form h3,
+form > * {
+  margin: 0.3em 0;
+}
+
+form h3 {
+  margin-top: 0;
+}
+
+button {
+  background-color: #ff9999;
+  color: rgb(8, 12, 11);
+  border-radius: 50px;
+  text-decoration: none;
+  width: 180px;
+  height: 40px;
+  font-size: 15px;
+  font-family: "Poppins";
+  border: 3px solid #fa8072;
+}
+
+textarea {
+   font-family: inherit;
+   font-size: inherit;
+}
+</style>

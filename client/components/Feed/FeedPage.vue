@@ -112,10 +112,10 @@ header, header > * {
 }
 
 .button {
-  background-color: rgb(133, 226, 197);
-  color: rgb(8, 12, 11);
+  background-color: #ff9999;
+  border: 3px solid #fa8072;
+  /* border: 3px solid #fa8072; */
   border-radius: 50px;
-  border: none;
   text-decoration: none;
   font-weight: bold;
   margin:auto;

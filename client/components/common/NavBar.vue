@@ -53,7 +53,7 @@
 <style scoped>
 nav {
     padding: 1vw 2vw;
-    background-color: rgb(133, 226, 197);
+    background-color: #ff9999;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -90,10 +90,9 @@ img {
 
 .button {
   background-color: rgb(252, 252, 252);
-  color: rgb(105, 231, 199);
   padding: 5px;
   border-radius: 20px;
-  border: none;
+  border: 3px solid #fa8072;
 }
 
 .inside{

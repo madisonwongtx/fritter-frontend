@@ -47,7 +47,7 @@
       <div class="answer">
         <button 
           v-if="$store.state.question1===1"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Acceptable
         </button>
@@ -60,7 +60,7 @@
         </button>
         <button 
           v-if="$store.state.question1===2"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Not Acceptable
         </button>
@@ -78,7 +78,7 @@
       <div class="answer">
         <button 
           v-if="$store.state.question2===1"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Acceptable
         </button>
@@ -91,7 +91,7 @@
         </button>
         <button 
           v-if="$store.state.question2===2"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Not Acceptable
         </button>
@@ -109,7 +109,7 @@
       <div class="answer">
         <button 
           v-if="$store.state.question3===1"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Acceptable
         </button>
@@ -122,7 +122,7 @@
         </button>
         <button 
           v-if="$store.state.question3===2"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Not Acceptable
         </button>
@@ -140,7 +140,7 @@
       <div class="answer">
         <button 
           v-if="$store.state.question4===1"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Acceptable
         </button>
@@ -153,7 +153,7 @@
         </button>
         <button 
           v-if="$store.state.question4===2"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Not Acceptable
         </button>
@@ -171,7 +171,7 @@
       <div class="answer">
         <button 
           v-if="$store.state.question5===1"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Acceptable
         </button>
@@ -184,7 +184,7 @@
         </button>
         <button 
           v-if="$store.state.question5===2"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Not Acceptable
         </button>
@@ -202,7 +202,7 @@
       <div class="answer">
         <button 
           v-if="$store.state.question6===1"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Acceptable
         </button>
@@ -215,7 +215,7 @@
         </button>
         <button 
           v-if="$store.state.question6===2"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Not Acceptable
         </button>
@@ -233,7 +233,7 @@
       <div class="answer">
         <button 
           v-if="$store.state.question7===1"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Acceptable
         </button>
@@ -246,7 +246,7 @@
         </button>
         <button 
           v-if="$store.state.question7===2"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Not Acceptable
         </button>
@@ -264,7 +264,7 @@
       <div class="answer">
         <button 
           v-if="$store.state.question8===1"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Acceptable
         </button>
@@ -277,7 +277,7 @@
         </button>
         <button 
           v-if="$store.state.question8===2"
-          style="background-color:rgb(133, 226, 197)"
+          style="background-color:#ff9999"
         >
           Not Acceptable
         </button>
@@ -418,36 +418,36 @@ score {
 .question {
   margin-left: 10px;
   margin-top: 10px;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .quiz {
-  border: 3px dotted rgb(48, 224, 168);
+  border: 3px dotted #fa8072;
 }
 
 .answer button{
   border-radius: 15px;
   margin-left: 10px;
-  border: 2px solid rgb(48, 224, 168);
-  font-size: 15px;
+  border: 2px solid #fa8072;
+  font-size: 20px;
   margin-bottom: 5px;
 }
 
 .request {
-  background-color: rgb(133, 226, 197);
+  background-color: #ff9999;
   width: 500px;
   height: 50px;
   border-radius: 20px;
-  border: 3px solid rgb(48, 224, 168);
+  border: 3px solid #fa8072;
   margin-bottom: 15px;
   font-family: "Poppins";
   font-size: 18px;
 }
 
 .submit {
-  background-color:  rgb(133, 226, 197);
+  background-color:  #ff9999;
   font-family: "Poppins";
-  border: 3px solid rgb(48, 224, 168);
+  border: 3px solid #fa8072;
   border-radius: 18px;
   margin-top: 20px;
   font-size: 20px;
