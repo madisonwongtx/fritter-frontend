@@ -80,7 +80,7 @@
       </router-link>
     </section>
     <section>
-      <h2>Your Contributions</h2>
+      <h2 class="special">Your Contributions</h2>
       <section
         v-if="contributions.length"
       >
@@ -196,7 +196,7 @@ header, header > * {
 }
 
 button {
-    margin-right: 10px;
+    margin-right: 1em;
 }
 
 section .scrollbox {
@@ -205,8 +205,8 @@ section .scrollbox {
   overflow-y: scroll;
 }
 
-h2 {
-  text-align: center;
+.special {
+  margin-top: 4em;
 }
 .newPage {
   font-size: 20px;
@@ -217,11 +217,10 @@ h2 {
 }
 
 .follow button {
-  width: 150px;
   background-color: white;
   border-radius: 8px;
   border-width: 1px;
-  width: 300px;
+  width: 15em;
   border-style: dotted;
   font-family: "Poppins";
   font-weight: bold;
@@ -229,18 +228,18 @@ h2 {
 }
 
 .show {
-  margin-top: 5px;
+  margin-top: 2em;
   border-top-width: 5px;
   display: flex;
   flex-direction: column;
-  margin-left: 800px;
+  margin-left: 30em;
 }
 
 .options {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 1em;
 }
 
 .options button {
@@ -250,19 +249,19 @@ h2 {
   border-radius: 50px;
   border: 3px solid #fa8072;
   margin-bottom: 0px;
-  width: 500px;
-  height: 50px;
+  width: 18em;
+  height: 2em;
 }
 
 .top {
   display: flex;
   flex-direction: row;
-  margin-bottom: 50px;
+  margin-bottom: 3em;
 }
 
 .follow {
-  margin-left: 200px;
-  margin-top: 50px;
+  margin-left: 4em;
+  margin-top: 3em;
 }
 </style>
 

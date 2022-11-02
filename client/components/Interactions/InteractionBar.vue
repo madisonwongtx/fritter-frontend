@@ -256,6 +256,6 @@ button {
   border-width: 1px;
   font-size: 20px;
   margin-right: 0px;
-  width: 50px;
+  width: 2em;
 }
 </style>

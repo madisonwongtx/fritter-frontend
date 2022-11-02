@@ -307,8 +307,8 @@ export default {
     border: 1px solid #111;
     border-style: dashed;
     border-radius: 15px;
-    margin-bottom: 10px;
-    padding: 20px;
+    margin-bottom: 1em;
+    padding: 1.5em;
     position: relative;
 }
 
@@ -320,8 +320,8 @@ export default {
 
 .actions button {
   border-radius: 18px;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 .actions{
   /* how do i put on right side */
@@ -331,6 +331,8 @@ export default {
 
 .content {
   font-weight: bold;
+  width: 100em;
+  font-family: "Poppins";
 }
 
 </style>

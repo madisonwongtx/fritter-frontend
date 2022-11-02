@@ -35,7 +35,7 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 1em;
   position: relative;
 }
 
@@ -62,8 +62,8 @@ form h3 {
   border-radius: 50px;
   border: none;
   text-decoration: none;
-  width: 150px;
-  height: 40px;
+  width: 15em;
+  height: 3em;
   font-family: "Poppins";
   border: 3px solid #fa8072;
   font-weight: bold;

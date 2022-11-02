@@ -114,13 +114,12 @@ header, header > * {
 .button {
   background-color: #ff9999;
   border: 3px solid #fa8072;
-  /* border: 3px solid #fa8072; */
   border-radius: 50px;
   text-decoration: none;
   font-weight: bold;
   margin:auto;
-  width: 175px;
-  height: 50px;
+  width: 10em;
+  height: 3em;
   font-size: 15px;
   font-family: "Poppins";
 }

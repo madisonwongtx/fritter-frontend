@@ -113,9 +113,9 @@ export default {
 <style scoped>
 .user {
     border: 1px solid #111;
-    padding: 20px;
+    padding: 1em;
     position: relative;
-    width: 410px;
+    width: 20em;
     border-style: dashed;
     border-radius: 10px;
     margin-bottom: 2px;
@@ -125,6 +125,7 @@ button {
   font-family: "Poppins";
   font-weight: bold;
   border-radius: 10px;
-  background-color: whitesmoke;
+  background-color: #ff9999;
+  border: 2px solid #fa8072;
 }
 </style>

@@ -99,8 +99,8 @@ img {
   font-family: "Poppins";
   font-size: 18px;
   color: rgb(0, 2, 2);
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 1em;
+  margin-right: 0.5em;
   text-decoration: none;
 }
 

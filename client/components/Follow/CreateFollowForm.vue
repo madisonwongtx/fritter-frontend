@@ -39,3 +39,24 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+button {
+  background-color:  #ff9999;
+  font-family: "Poppins";
+  border: 3px solid #fa8072;
+  border-radius: 18px;
+  width: 10em;
+  margin-top: 1em;
+  margin-left: 2em;
+  font-size: 20px;
+}
+
+input {
+  width: 20em;
+  height: 3em;
+  font-family: "Poppins";
+  font-weight: bold;
+}
+</style>

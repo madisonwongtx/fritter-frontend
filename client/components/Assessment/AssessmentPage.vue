@@ -422,8 +422,8 @@ score {
 }
 
 .question {
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 1em;
+  margin-top: 1em;
   font-size: 24px;
 }
 
@@ -433,21 +433,21 @@ score {
 
 .answer button{
   border-radius: 15px;
-  margin-left: 10px;
+  margin-left: 1em;
   border: 2px solid #fa8072;
   font-size: 20px;
-  margin-bottom: 5px;
+  margin-bottom: 0.1em;
 }
 
 .request {
   background-color: #ff9999;
-  width: 500px;
-  height: 50px;
+  width: 85em;
+  height: 3em;
   border-radius: 20px;
   border: 3px solid #fa8072;
-  margin-bottom: 15px;
+  margin-bottom: 1em;
   font-family: "Poppins";
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .submit {
@@ -455,7 +455,8 @@ score {
   font-family: "Poppins";
   border: 3px solid #fa8072;
   border-radius: 18px;
-  margin-top: 20px;
+  width: 20em;
+  margin-top: 1em;
   font-size: 20px;
 }
 

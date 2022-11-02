@@ -91,7 +91,7 @@ header, header > * {
 }
 
 button {
-    margin-right: 10px;
+    margin-right: 1em;
 }
 
 .back {

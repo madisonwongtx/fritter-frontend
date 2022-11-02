@@ -53,8 +53,8 @@ article > div {
   border-radius: 50px;
   border: none;
   text-decoration: none;
-  width: 150px;
-  height: 40px;
+  width: 13em;
+  height: 3em;
   font-size: 15px;
   margin: auto;
   font-family: "Poppins";

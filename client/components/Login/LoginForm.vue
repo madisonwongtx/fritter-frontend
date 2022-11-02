@@ -35,9 +35,9 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 1em;
   font-size: 25px;
-  width: 300px;
+  width: 20em;
   margin: auto;
   position: relative;
 }
@@ -54,8 +54,8 @@ article > div {
   border: 3px solid #fa8072;
   text-decoration: none;
   margin:auto;
-  width: 150px;
-  height: 40px;
+  width: 15em;
+  height: 3em;
   font-size: 20px;
   font-family: "Poppins";
 }

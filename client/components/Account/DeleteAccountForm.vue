@@ -32,7 +32,7 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 1em;
   position: relative;
   font-size: 25px;
 }
@@ -60,8 +60,8 @@ button {
   color: rgb(8, 12, 11);
   border-radius: 50px;
   text-decoration: none;
-  width: 200px;
-  height: 45px;
+  width: 10em;
+  height: 3em;
   font-size: 20px;
   font-family: "Poppins";
   border: 3px solid #fa8072;
