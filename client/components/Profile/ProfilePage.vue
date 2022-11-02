@@ -239,6 +239,7 @@ section .scrollbox {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 15em;
   margin-top: 1em;
 }
 
@@ -249,7 +250,7 @@ section .scrollbox {
   border-radius: 50px;
   border: 3px solid #fa8072;
   margin-bottom: 0px;
-  width: 18em;
+  width: 17em;
   height: 2em;
 }
 

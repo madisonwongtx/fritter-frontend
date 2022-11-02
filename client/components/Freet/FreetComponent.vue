@@ -119,6 +119,7 @@ export default {
           this.$store.commit('alert', {
             message: 'Successfully deleted freet!', status: 'success'
           });
+          this.$store.commit('refreshFeed');
         }
       };
       this.request(params);
@@ -139,6 +140,7 @@ export default {
         message: 'Successfully edited freet!',
         body: JSON.stringify({content: this.draft}),
         callback: () => {
+          this.$store.commit('refreshFeed');
           this.$set(this.alerts, params.message, 'success');
           setTimeout(() => this.$delete(this.alerts, params.message), 3000);
         }
@@ -168,6 +170,7 @@ export default {
 
         this.editing = false;
         this.$store.commit('refreshFreets');
+        this.$store.commit('refreshFeed');
 
         params.callback();
       } catch (e) {

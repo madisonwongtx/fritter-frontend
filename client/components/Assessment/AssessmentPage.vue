@@ -441,7 +441,7 @@ score {
 
 .request {
   background-color: #ff9999;
-  width: 85em;
+  width: 50em;
   height: 3em;
   border-radius: 20px;
   border: 3px solid #fa8072;
